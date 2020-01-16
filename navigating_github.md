@@ -7,4 +7,4 @@ User page - https://github.com/kaitlinwhite19
 
 Participaiton - https://github.com/kaitlinwhite19/DataSci-Participation/edit/master/navigating_github.md
 
-bloop bloop im confused - lets see how this works
+change - use for figuring out how to save
