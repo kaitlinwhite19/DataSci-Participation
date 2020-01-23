@@ -1,19 +1,15 @@
 #Data Sci 2020; Important URL's
 
-Home - https://github.com/USF-Psych-DataSci-2020
+*Home* - https://github.com/USF-Psych-DataSci-2020
        https://github.com/USF-Psych-DataSci
 
-User page - https://github.com/kaitlinwhite19
+*__User__ page* - https://github.com/kaitlinwhite19
 
 Participaiton - https://github.com/kaitlinwhite19/DataSci-Participation/edit/master/navigating_github.md
 
+
+
+
 \*oof\*  *I am __real__ confused rn but thats okay*
 
-Things I like
-1. cookies
-  a Chocolate Chip
-  b Oatmeal Raisin
-2. caffeine
-3. boobs
-1. sleep
 
