@@ -11,6 +11,8 @@ Participaiton - https://github.com/kaitlinwhite19/DataSci-Participation/edit/mas
 
 Things I like
 1. cookies
+  a Chocolate Chip
+  b Oatmeal Raisin
 2. caffeine
 3. boobs
 1. sleep
