@@ -1,15 +1,13 @@
 ---
-title: "R Markdown Exploration"
-author: "Kaitlin"
-date: "last_updated_Jan._23_2020"
+title: R Markdown Exploration
+author: Kaitlin
+date: last updated "`r format(Sys.time(), '%d %B, %Y')`"
 output:
-  pdf_document:
-    toc: yes
   html_document:
-    theme: Cerulean
-    toc: yes
-    toc_float: yes
-
+    keepmd: true
+    theme: cerulean
+    toc: true
+    toc_float: true
 ---
 
 This is a document. Words words words. Yay. Words.
@@ -36,27 +34,25 @@ library(tibble)
 
 
 ```{r}
-
 gapminder
-
 ````
 
-heres where i got lost. 
+using mtcars data set - different ways to look at mpg, by graph and by numbers, and avg MPG formula
 ```{r}
 mtcars
 
-#mean(mtcars[mpg])
+#mtcars["mpg"]
+#mtcars[["mpg"]]
+#mtcars$mpg
 
-
-
+mean(mtcars[["mpg"]])
 ```
  
  
  Using tibble - not sure what this did?
 ```{r}
-
 tibble::as_tibble(mtcars)
-
 ```
 
-took a few minutes to edit the YAML 
+
+Did some editing to YAML
