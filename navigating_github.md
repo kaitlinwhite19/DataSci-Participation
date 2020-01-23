@@ -1,5 +1,5 @@
 #Data Sci 2020; Important URL's
-##Kaitlin White
+Kaitlin White
 
 Home - https://github.com/USF-Psych-DataSci-2020
        https://github.com/USF-Psych-DataSci
