@@ -3,7 +3,7 @@ title: "R Markdown Exploration"
 output: html_document
 ---
 
-This is a code block - __r__ is naming programming language. Th lower code is then a section of R code. 
+This is a code block - __r__ is naming programming language. The lower code is then a section of R code. 
 
 ```{r} 
 4/2
