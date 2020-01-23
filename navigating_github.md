@@ -7,4 +7,4 @@ User page - https://github.com/kaitlinwhite19
 
 Participaiton - https://github.com/kaitlinwhite19/DataSci-Participation/edit/master/navigating_github.md
 
-\*oof\*  *I am __real__ confused rn* but thats okay
+\*oof\*  *I am __real__ confused rn but thats okay*
