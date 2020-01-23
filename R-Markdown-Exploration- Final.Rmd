@@ -1,14 +1,13 @@
 ---
-title: "R Markdown Exploration"
-author: "Kaitlin"
-date: "last_updated_Jan._23_2020"
+title: R Markdown Exploration
+author: Kaitlin
+date: last updated "`r format(Sys.time(), '%d %B, %Y')`"
 output:
   html_document:
     keepmd: true
     theme: Cerulean
     toc: true
     toc_float: true
-
 ---
 
 This is a document. Words words words. Yay. Words.
