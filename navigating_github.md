@@ -8,3 +8,10 @@ User page - https://github.com/kaitlinwhite19
 Participaiton - https://github.com/kaitlinwhite19/DataSci-Participation/edit/master/navigating_github.md
 
 \*oof\*  *I am __real__ confused rn but thats okay*
+
+Things I like
+1. cookies
+2. caffeine
+3. boobs
+1. sleep
+
