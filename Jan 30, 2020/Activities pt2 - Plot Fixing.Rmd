@@ -3,10 +3,10 @@ title: "Activities Pt. 2 - Fix the Plots"
 author: "Kaitlin"
 date: "1/30/2020"
 output: html_document
-          keep_md: true
 ---
+# Activity 2
 
-Set Up
+## Set Up
 
 In this worksheet, we'll be looking at some erroneous plots and fixing them. 
 
@@ -36,25 +36,30 @@ knitr::opts_chunk$set(error = TRUE, warning = FALSE)
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+## Excercizes
 
-## Exercise 1: Overlapping Points
+### Exercise 1: Overlapping Points
 
-Fix the overlapping data points problem in the following plot by adding an `alpha`
-or `size` argument (attribution: ["R for data science"](https://r4ds.had.co.nz/data-visualisation.html)).
+Fix the overlapping data points problem in the following plot by adding an `alpha`or `size` argument.
 
+Code Provided:
 ```{r, fig.width = 5, fig.height = 2}
 ggplot(mpg, aes(cty, hwy)) + 
   geom_point()
 ```
 
+Code Fixed
+```{r, fig.width = 5, fig.height = 2}
+ggplot(mpg, aes(cty, hwy)) + 
+  geom_point(alpha=.5)
+```
 
-## Exercise 2: Line for each Country
 
-Fix this plot so that it shows life expectancy over time with a separate line
-_for each country_. 
+### Exercise 2: Line for each Country
 
-Notice that we tried to use `group_by()`. We will cover that next week. But 
-also notice that `ggplot2` ignores the grouping of a tibble!
+Fix this plot so that it shows life expectancy over time with a separate line _for each country_. 
+
+Notice that we tried to use `group_by()`. We will cover that next week. But also notice that `ggplot2` ignores the grouping of a tibble!
 
 ```{r, fig.width = 5, fig.height = 2}
 gapminder %>% 
@@ -64,9 +69,9 @@ gapminder %>%
 ```
 
 
-## Exercise 3: More gdpPercap vs lifeExp
+### Exercise 3: More gdpPercap vs lifeExp
 
-### 3(a) Facets
+#### 3(a) Facets
 
 - Change the x-axis text to be in "comma format" with `scales::comma_format()`.
 - Separate each continent into sub-panels.
@@ -77,7 +82,7 @@ ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   scale_x_log10()
 ```
 
-### 3(b) Bubble Plot
+#### 3(b) Bubble Plot
 
 - Put the plots in one row, and free up the axes (let them have different scales).
 - Make a bubble plot by making the size of the points proportional to population. 
@@ -96,7 +101,7 @@ gapminder %>%
 
 A list of shapes can be found [at the bottom of the `scale_shape` documentation](https://ggplot2.tidyverse.org/reference/scale_shape.html).
 
-### 3(c) Size "not working"
+#### 3(c) Size "not working"
 
 Instead of alpha transparency, suppose you're wanting to fix the overplotting issue by plotting small points. Why is this not working? Fix it.
 
@@ -107,7 +112,7 @@ ggplot(gapminder) +
 ```
 
 
-## Exercise 4: Walking caribou
+### Exercise 4: Walking caribou
 
 The following mock data set marks the (x,y) position of a caribou at four time points. 
 
@@ -127,9 +132,9 @@ tribble(
   geom_line()
 ```
 
-## Exercise 5: Life expectancies in Africa
+### Exercise 5: Life expectancies in Africa
 
-### 5(a) Unhiding the data
+#### 5(a) Unhiding the data
 
 Fix the plot so that you can actually see the data points. 
 
@@ -144,7 +149,7 @@ gapminder %>%
   scale_x_discrete()
 ```
 
-### 5(b) Ridgeplots
+#### 5(b) Ridgeplots
 
 We're starting with the same plot as above, but instead of the points + boxplot, try a ridge plot instead using `ggridges::geom_density_ridges()`, and adjust the `bandwidth`.
 
@@ -156,9 +161,9 @@ gapminder %>%
   geom_boxplot()
 ```
 
-## Exercise 6: Bar plot madness
+### Exercise 6: Bar plot madness
 
-### 6(a) Colour and stacking madness
+#### 6(a) Colour and stacking madness
 
 - Change the following plot so that it shows _proportion_ on the y-axis, not count.
 - Change the x-axis so that it doesn't appear to be continuous.
@@ -174,7 +179,7 @@ mtcars %>%
   geom_bar(aes(color = transmission))
 ```
 
-### 6(b) Bar heights already calculated
+#### 6(b) Bar heights already calculated
 
 Here's the number of people having a certain hair colour from a sample of 592 people:
 
@@ -190,7 +195,7 @@ ggplot(hair, aes(Hair, n)) +
   geom_bar()
 ```
 
-## Exercise 7: Tiling
+### Exercise 7: Tiling
 
 Here's the number of people having a certain hair and eye colour from a sample of 592 people:
 
@@ -210,7 +215,7 @@ ggplot(hair_eye, aes(Hair, Eye)) +
 By the way, `geom_count()` is like `geom_bar()`: it counts the number of overlapping points.
 
 
-## Additional take-home practice
+### Additional take-home practice
 
 If you'd like some practice, give these exercises a try
 
