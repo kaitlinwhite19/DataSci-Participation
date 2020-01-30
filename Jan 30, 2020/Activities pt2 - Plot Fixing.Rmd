@@ -6,13 +6,15 @@ output: html_document
           keep_md: true
 ---
 
+Set Up
+
 In this worksheet, we'll be looking at some erroneous plots and fixing them. 
 
 I think you might not have these two packages installed:
 
-```
-install.packages("ggridges")
-install.packages("scales")
+```{r}
+#install.packages("ggridges")
+#install.packages("scales")
 ```
 
 The exercsies below include some data wrangling function. It's okay if you
@@ -31,6 +33,8 @@ library(scales)
 ```{r allow errors, echo = FALSE}
 knitr::opts_chunk$set(error = TRUE, warning = FALSE)
 ```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 ## Exercise 1: Overlapping Points
