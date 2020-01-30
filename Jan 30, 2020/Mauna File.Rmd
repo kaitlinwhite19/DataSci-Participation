@@ -105,6 +105,9 @@ So you're a ggplot2 pro? Then, let's see this plot adapted to polar coordinates.
 The plot should look like a spiral, or concentric circles. 
 
 ```{r, fig.width = 5, fig.height = 2}
-FILL_THIS_IN
+ggplot (mauna, aes(month, conc)) +
+  geom_line() +
+  theme_classic() 
 ```
+
 
