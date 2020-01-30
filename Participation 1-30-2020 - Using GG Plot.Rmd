@@ -4,6 +4,7 @@ author: "Kaitlin"
 date: "1/30/2020"
 output: html_document
 ---
+
 ```{r}
 #install.packages("tidyverse")
 #install.packages("scales")
@@ -48,6 +49,9 @@ With the output plot
 | facetting             | none         |
 
 
-Class Walkthrough:
+Class Walkthrough of a Scatter Plot
+
+```{r}
+ggplot(gapminder, aes(gdpPerCap, lifeExp))
 
 
