@@ -1,5 +1,5 @@
 ---
-title: "Mauna"
+title: "Activity 1"
 author: "Kaitlin"
 date: "1/30/2020"
 output: html_document
@@ -53,15 +53,15 @@ ggplot (mauna, aes(month, conc)) +
 ###2b- Fix The Code
 
 Code Provided:
-```{r, fig.with = 5, fig.height = 2}
+{r, fig.with = 5, fig.height = 2}
 ggplot(mauna, aes(y = month)) +
   geom_line(aes(FILL_THIS_IN))
-```
+
 
 Fixed:
 ```{r, fig.with = 5, fig.height = 2}
 ggplot(mauna, aes(month, conc)) +
-  geom_line(aes(colour="blue"))
+  geom_line()
 ```
 
 
@@ -83,10 +83,9 @@ p +
 What's wrong with the following code? Fix it.
 
 Code Provided:
-```{r, fig.width = 5, fig.height = 2}
+{r, fig.width = 5, fig.height = 2}
 ggplot(gapminder) +
   geom_point(x = gdpPercap, y = lifeExp, alpha = 0.1)
-```
 
 Fixed:
 ```{r, fig.width = 5, fig.height = 2}
