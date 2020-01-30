@@ -5,6 +5,8 @@ date: "1/30/2020"
 output: html_document
 ---
 
+Installation and Set Up
+
 ```{r}
 #install.packages("tidyverse")
 #install.packages("scales")
@@ -16,6 +18,7 @@ suppressPackageStartupMessages(library(scales))
 knitr::opts_chunk$set(fig.width = 5, fig.height = 4, fig.align = "center")
 ```
 
+Code Example
 
 ```{r}
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
@@ -26,12 +29,12 @@ ggplot(gapminder, aes(gdpPercap, lifeExp)) +
 ```
 
 
-In class Practice
+In class Practice - Naming Components
 
-```{r, fig.width = 5, fig.height = 2}
+```{r, fig.width=5, fig.height=2}
 gapminder %>% 
-  filter(year == 2007) %>% 
-  mutate(continent = fct_infreq(continent)) %>% 
+  filter(year==2007) %>% 
+  mutate(continent=fct_infreq(continent)) %>% 
   ggplot(aes(continent)) +
   geom_bar() +
   theme_bw()
@@ -41,17 +44,73 @@ With the output plot
 | Grammar Component     | Specification |
 |-----------------------|---------------|
 | __data__              | `gapminder`  |
-| __aesthetic mapping__ |               |
+| __aesthetic mapping__ |              |
 | __geometric object__  | Bar          |
 | scale                 | Linear       |
 | statistical transform | none         |
 | coordinate system     | rectangular  |
 | facetting             | none         |
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Class Walkthrough of a Scatter Plot
+Class Walkthrough of a Making Scatter Plot- see notes
+
+Step 1 - The Basics
 
 ```{r}
-ggplot(gapminder, aes(gdpPerCap, lifeExp))
+ggplot(gapminder, aes(gdpPercap, lifeExp))
+```
 
+Step 2 - geom_point
 
+```{r}
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point()
+```
+
+Step 3 - Alpha and Color
+
+```{r}
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha =.1, aes(color = continent))
+
+```
+
+Step 4 - Scale 
+
+```{r}
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha =.1, aes(color = continent)) +
+  scale_x_log10()
+```
+
+using log 10 transformation - not sure what that math is..? It's fine.
+
+Step 5 - Specifying Scale and Label
+
+```{r}
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha =.1, aes(color = continent)) +
+  scale_x_log10("GDP per capita", labels=scales::dollar_format())
+```
+  
+
+Okay Cool! We're happy with this! Now... Lets make it prettier.
+
+Step 6 - Theme & Adding $ to GDP
+```{r}
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha =.1, aes(color=continent)) +
+  scale_x_log10("GDP Per Capita", labels=scales::dollar_format()) +
+  theme_grey()
+```
+
+Step 7 - Naming Y Axis
+
+```{r}
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha =.1, aes(color=continent)) +
+  scale_x_log10("GDP per capita", labels=scales::dollar_format()) +
+  theme_grey() +
+  ylab("Life Expectancy")
+```
