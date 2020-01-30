@@ -4,8 +4,9 @@ author: "Kaitlin"
 date: "1/30/2020"
 output: html_document
 ---
+#Participation Activities Jan 30th 2020
 
-Installation and Set Up
+##Installation and Set Up
 ```{r}
 #install.packages("tidyverse")
 #install.packages("scales")
@@ -17,13 +18,93 @@ suppressPackageStartupMessages(library(scales))
 knitr::opts_chunk$set(fig.width = 5, fig.height = 4, fig.align = "center")
 ```
 
+##Activities!
+
+###2a - Write Your Own!
+
+ Specifically, the plot should have the following grammar components:
+
+| Grammar Component     | Specification |
+|-----------------------|---------------|
+| __data__              | `mauna` |
+| __aesthetic mapping__ | x: month, y: conc |
+| __geometric object__  | lines |
+| scale                 | linear |
+| statistical transform | none |
+| coordinate system     | rectangular |
+| facetting             | none |
+
+####Open Mauna - 
+
 ```{r}
 (mauna <- tsibble::as_tsibble(co2) %>% 
    rename(month = index, conc = value))
 ```
 
-```{r, fig.width= 2 , fig.height= 5}
-ggplot(mauna, aes(month, conc)) +
+####Make plot - 
+
+```{r, fig.width= 7 , fig.height= 5}
+ggplot (mauna, aes(month, conc)) +
   geom_line() +
+  theme_classic() 
+```
+
+
+###2b- Fix The Code
+
+Code Provided:
+```{r, fig.with = 5, fig.height = 2}
+ggplot(mauna, aes(y = month)) +
+  geom_line(aes(FILL_THIS_IN))
+```
+
+Fixed:
+```{r, fig.with = 5, fig.height = 2}
+ggplot(mauna, aes(month, conc)) +
+  geom_line(aes(colour="blue"))
+```
+
+
+
+###2c - Storing & P
+
+You can store the output of the plot in a variable, too. Store the plot from 2(a) in the variable named `p`, then add a layer to `p` that adds green points to the plot.
+
+```{r, fig.width = 5, fig.height = 2}
+p<-ggplot (mauna, aes(month, conc)) +
+  geom_line() +
+  theme_classic() 
+p +
+  geom_point(color="green")
+```
+
+### 2(d)
+
+What's wrong with the following code? Fix it.
+
+Code Provided:
+```{r, fig.width = 5, fig.height = 2}
+ggplot(gapminder) +
+  geom_point(x = gdpPercap, y = lifeExp, alpha = 0.1)
+```
+
+Fixed:
+```{r, fig.width = 5, fig.height = 2}
+ggplot(gapminder, aes(gdpPercap, lifeExp))+
+  geom_point(alpha = 0.1)
+```
+
+
+### 2(e) BONUS
+
+So you're a ggplot2 pro? Then, let's see this plot adapted to polar coordinates. Specifically:
+
+- angle is month (January through December)
+- radius is CO$_2$ concentration
+
+The plot should look like a spiral, or concentric circles. 
+
+```{r, fig.width = 5, fig.height = 2}
+FILL_THIS_IN
 ```
 
