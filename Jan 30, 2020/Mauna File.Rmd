@@ -1,0 +1,29 @@
+---
+title: "Mauna"
+author: "Kaitlin"
+date: "1/30/2020"
+output: html_document
+---
+
+Installation and Set Up
+```{r}
+#install.packages("tidyverse")
+#install.packages("scales")
+#install.packages("tsibble")
+
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(gapminder))
+suppressPackageStartupMessages(library(scales))
+knitr::opts_chunk$set(fig.width = 5, fig.height = 4, fig.align = "center")
+```
+
+```{r}
+(mauna <- tsibble::as_tsibble(co2) %>% 
+   rename(month = index, conc = value))
+```
+
+```{r, fig.width= 2 , fig.height= 5}
+ggplot(mauna, aes(month, conc)) +
+  geom_line() +
+```
+
