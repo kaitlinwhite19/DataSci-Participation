@@ -110,7 +110,18 @@ Step 7 - Naming Y Axis
 ```{r}
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point(alpha =.1, aes(color=continent)) +
-  scale_x_log10("GDP per capita", labels=scales::dollar_format()) +
+  scale_x_log10("GDP Per Capita", labels=scales::dollar_format()) +
   theme_grey() +
   ylab("Life Expectancy")
 ```
+
+
+Step 8 - Figure Size
+```{r, fig.width=7, fig.height=5}
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha =.1, aes(color=continent)) +
+  scale_x_log10("GDP Per Capita", labels=scales::dollar_format()) +
+  theme_grey() +
+  ylab("Life Expectancy")
+```
+
