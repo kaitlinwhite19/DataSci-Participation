@@ -108,13 +108,26 @@ ggplot(gapminder, aes(gdpPercap, lifeExp)) +
     but that is not optimal for perception).
 - Use `shape=21` to distinguish between `fill` (interior) and `color` (exterior). 
 
-```{r, fig.width = 5, fig.height = 2}
+**Origional Code**
+```{r}
 gapminder %>% 
   filter(continent != "Oceania") %>% 
   ggplot(aes(gdpPercap, lifeExp)) +
   facet_wrap(~ continent) +
   geom_point(alpha = 0.2) +
   scale_x_log10(labels = scales::comma_format())
+```
+  
+**Fixed Code**
+
+```{r, fig.width = 5, fig.height = 2}
+gapminder %>% 
+  filter(continent != "Oceania") %>% 
+  ggplot(aes(gdpPercap, lifeExp, size = pop, fill = continent)) +
+  facet_wrap(~ continent, nrow = 1) +
+  geom_point(alpha = 0.2, shape = 21) +
+  scale_x_log10(labels = scales::comma_format()) +
+  scale_size_area()
 ```
 
 A list of shapes can be found [at the bottom of the `scale_shape` documentation](https://ggplot2.tidyverse.org/reference/scale_shape.html).
@@ -123,9 +136,17 @@ A list of shapes can be found [at the bottom of the `scale_shape` documentation]
 
 Instead of alpha transparency, suppose you're wanting to fix the overplotting issue by plotting small points. Why is this not working? Fix it.
 
+**Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
 ggplot(gapminder) +
   geom_point(aes(gdpPercap, lifeExp, size = 0.1)) +
+  scale_x_log10(labels = scales::dollar_format())
+```
+
+**Fixed Code**
+```{r, fig.width = 5, fig.height = 2}
+ggplot(gapminder) +
+  geom_point(aes(gdpPercap, lifeExp), size = 0.1) +
   scale_x_log10(labels = scales::dollar_format())
 ```
 
@@ -138,6 +159,7 @@ The following mock data set marks the (x,y) position of a caribou at four time p
 - Add an arrow with `arrow = arrow()`.
 - Add the `time` label with `geom_text()`.
 
+**Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
 tribble(
   ~time, ~x, ~y,
@@ -148,6 +170,20 @@ tribble(
 ) %>% 
   ggplot(aes(x, y)) + 
   geom_line()
+```
+
+**Fixed Code**
+```{r, fig.width = 5, fig.height = 2}
+tribble(
+  ~time, ~x, ~y,
+  1, 0.3, 0.3,
+  2, 0.8, 0.7,
+  3, 0.5, 0.9,
+  4, 0.4, 0.5
+) %>% 
+  ggplot(aes(x, y)) + 
+  geom_path(arrow = arrow) +
+  geom_text(aes(label = time))
 ```
 
 ### Exercise 5: Life expectancies in Africa
