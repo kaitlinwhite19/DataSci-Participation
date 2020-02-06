@@ -40,8 +40,6 @@ knitr::opts_chunk$set(error = TRUE, warning = FALSE)
 
 ### Exercise 1: Overlapping Points
 
-Fix the overlapping data points problem in the following plot by adding an `alpha`or `size` argument.
-
 Code Provided:
 ```{r, fig.width = 5, fig.height = 2}
 ggplot(mpg, aes(cty, hwy)) + 
@@ -82,9 +80,6 @@ ggplot(gapminder, aes(year, lifeExp)) +
 
 #### 3(a) Facets
 
-- Change the x-axis text to be in "comma format" with `scales::comma_format()`.
-- Separate each continent into sub-panels.
-
 **Original Code**
 ```{r}
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
@@ -101,12 +96,6 @@ ggplot(gapminder, aes(gdpPercap, lifeExp)) +
 ```
 
 #### 3(b) Bubble Plot
-
-- Put the plots in one row, and free up the axes (let them have different scales).
-- Make a bubble plot by making the size of the points proportional to population. 
-  - Try adding a `scale_size_area()` layer too (could also try `scale_radius()` 
-    but that is not optimal for perception).
-- Use `shape=21` to distinguish between `fill` (interior) and `color` (exterior). 
 
 **Origional Code**
 ```{r}
@@ -134,8 +123,6 @@ A list of shapes can be found [at the bottom of the `scale_shape` documentation]
 
 #### 3(c) Size "not working"
 
-Instead of alpha transparency, suppose you're wanting to fix the overplotting issue by plotting small points. Why is this not working? Fix it.
-
 **Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
 ggplot(gapminder) +
@@ -152,12 +139,6 @@ ggplot(gapminder) +
 
 
 ### Exercise 4: Walking caribou
-
-The following mock data set marks the (x,y) position of a caribou at four time points. 
-
-- Fix the plot below so that it shows the path of the caribou. 
-- Add an arrow with `arrow = arrow()`.
-- Add the `time` label with `geom_text()`.
 
 **Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
@@ -190,10 +171,6 @@ tribble(
 
 #### 5(a) Unhiding the data
 
-Fix the plot so that you can actually see the data points. 
-
-There is also the problem of overlapping text in the x-axis labels. How could we solve that?
-
 **Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
 gapminder %>% 
@@ -217,8 +194,6 @@ gapminder %>%
 
 #### 5(b) Ridgeplots
 
-We're starting with the same plot as above, but instead of the points + boxplot, try a ridge plot instead using `ggridges::geom_density_ridges()`, and adjust the `bandwidth`.
-
 **Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
 gapminder %>% 
@@ -239,13 +214,6 @@ gapminder %>%
 ### Exercise 6: Bar plot madness
 
 #### 6(a) Colour and stacking madness
-
-- Change the following plot so that it shows _proportion_ on the y-axis, not count.
-- Change the x-axis so that it doesn't appear to be continuous.
-  - Hint: Transform the variable!
-- Also change the colors of the bar fills, as well as the lines.
-- Put the bars for transmission side-by-side with their own colour.
-- Capitalize the legend title.
 
 **Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
@@ -297,7 +265,6 @@ Here's the number of people having a certain hair and eye colour from a sample o
 ```
 
 Fix the following plot so that it shows a filled-in square for each combination. 
-_Hint:_ What's the title of this exercise?
 
 **Origional Code**
 ```{r}
@@ -310,5 +277,3 @@ ggplot(hair_eye, aes(Hair, Eye)) +
 ggplot(hair_eye, aes(Hair, Eye)) +
   geom_point(aes(fill = n))
 ```
-
-By the way, `geom_count()` is like `geom_bar()`: it counts the number of overlapping points.
