@@ -1,0 +1,15 @@
+---
+title: "Partcipation 2/6/2020"
+author: "Kaitlin"
+date: "2/6/2020"
+output: html_document
+---
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(gapminder))
+suppressPackageStartupMessages(library(scales))
+knitr::opts_chunk$set(fig.width = 5, fig.height = 4, fig.align = "center")
+```
+
+
