@@ -47,7 +47,7 @@ suppressPackageStartupMessages(library(tidyverse))
 the `gapminder` data, in that order.
 
 ```{r}
-select(gapminder, FILL_THIS_IN)
+select(gapminder, year, lifeExp, country)
 ```
 
 2. Select all variables, from `country` to `lifeExp`.
