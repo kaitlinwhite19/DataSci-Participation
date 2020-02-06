@@ -131,7 +131,13 @@ Now using with pipes:
 
 ```{r}
 # alter the below to include 2 "pipes"
-arrange(select(gapminder, year, lifeExp, country), year, lifeExp)
+arrange(select(gapminder), year, lifeExp, country), year, lifeExp)
+```
+
+```{r}
+gapminder %>% 
+  select(year, lifeExp, country) %>%
+  arrange(year, lifeExp)
 ```
 
 
