@@ -189,9 +189,15 @@ Let's get:
 
 ```{r}
 gapminder %>%
-  mutate(FILL_THIS_IN)
+  mutate(grossGDP = gdpPercap * pop)
 ```
 
+
+```{r}
+gapminder %>%
+  mutate(grossGDP=gdpPercap * pop)
+    gpdBill = (grossGDP/100000000) %>% round(2)
+```
 Notice the backwards compatibility! No need for loops!
 
 Try the same thing, but with `transmute` (drops all other variables). 
