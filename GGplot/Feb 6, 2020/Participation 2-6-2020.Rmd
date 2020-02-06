@@ -204,7 +204,7 @@ Try the same thing, but with `transmute` (drops all other variables).
 
 ```{r}
 gapminder %>%
-  transmute(FILL_THIS_IN)
+  transmute(gdpbill=(pop * gdpPercap / 100000000) %>% round(2))
 ```
 
 The `if_else` function is useful for changing certain elements in a data frame.
@@ -213,13 +213,31 @@ Example: Suppose Canada's 1952 life expectancy was mistakenly entered as 68.8 in
 
 ```{r}
 gapminder %>%
-  mutate(FILL_THIS_IN)
+  mutate(lifeExp = if_else(country == "canada" & year == 1952, 
+                           70,
+                           lifeExp)) %>% filter(country=="Canada")
 ```
+
+Replace Bangladesh w/ NA
+
+```{r}
+gapminder %>%
+  mutate(country == "Bangladesh", 
+         lifeExp = NA_real_) %>%
+  filter(country == "Bangladesh")
+```
+
+**Better way to do this** 
+```{r}
+gapminder %>%
+  mutate(lifeExp = if_else(country == "Bangladesh",
+         NA_real_,
+         lifeExp))
+```
+
 
 Your turn: Make a new column called `cc` that pastes the country name followed by the continent, separated by a comma. (Hint: use the `paste` function with the `sep=", "` argument).
 
-```{r}
-```
 
 These functions we've seen are called __vectorized functions__—they are designed 
 to work with vectors and do their computation on each element of the vector(s).
