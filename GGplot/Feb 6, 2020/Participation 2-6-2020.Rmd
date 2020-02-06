@@ -154,7 +154,7 @@ Return to guide at the section on *Relational/Comparison and Logical Operators i
 
 ```{r}
 gapminder %>%
-  filter(FILL_THIS_IN)
+  filter()
 ```
 
 2. Your turn: of those rows filtered from step 1., only take data from Asia.
