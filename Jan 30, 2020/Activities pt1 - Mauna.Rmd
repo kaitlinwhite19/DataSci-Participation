@@ -105,8 +105,6 @@ The plot should look like a spiral, or concentric circles.
 
 ```{r, fig.width = 5, fig.height = 2}
 ggplot (mauna, aes(month, conc)) +
-  geom_line() +
+  geom_????(angle=month.abb, radius=co2) +
   theme_classic() 
 ```
-
-

@@ -61,12 +61,21 @@ Fix this plot so that it shows life expectancy over time with a separate line _f
 
 Notice that we tried to use `group_by()`. We will cover that next week. But also notice that `ggplot2` ignores the grouping of a tibble!
 
+Code Provided:
 ```{r, fig.width = 5, fig.height = 2}
 gapminder %>% 
   group_by(country) %>% 
   ggplot(aes(year, lifeExp)) +
   geom_line()
 ```
+
+Code Fixed:
+```{r, fig.width = 5, fig.height = 2}
+ggplot(gapminder, aes(year, lifeExp)) +
+  geom_line() 
+  facet_wrap(vars("continent"))
+```
+
 
 
 ### Exercise 3: More gdpPercap vs lifeExp
@@ -76,10 +85,19 @@ gapminder %>%
 - Change the x-axis text to be in "comma format" with `scales::comma_format()`.
 - Separate each continent into sub-panels.
 
-```{r, fig.width = 5, fig.height = 2}
+**Original Code**
+```{r}
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point(alpha = 0.2) +
   scale_x_log10()
+```
+
+**Fixed Code**
+```{r, fig.width = 5, fig.height = 2}
+ggplot(gapminder, aes(gdpPercap, lifeExp)) +
+  geom_point(alpha = 0.2) +
+  scale_x_log10(labels = scales::comma_format()) + 
+  facet_wrap(~ continent, scales = "free_y")
 ```
 
 #### 3(b) Bubble Plot
