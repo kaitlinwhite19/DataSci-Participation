@@ -194,6 +194,7 @@ Fix the plot so that you can actually see the data points.
 
 There is also the problem of overlapping text in the x-axis labels. How could we solve that?
 
+**Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
 gapminder %>% 
   filter(continent == "Americas") %>% 
@@ -203,10 +204,22 @@ gapminder %>%
   scale_x_discrete()
 ```
 
+**Fixed Code**
+```{r, fig.width = 5, fig.height = 5}
+gapminder %>% 
+  filter(continent == "Americas") %>% 
+  ggplot(aes(country, lifeExp)) + 
+  geom_boxplot() +
+  geom_jitter(alpha = 0.2) +
+  coord_flip()
+```
+
+
 #### 5(b) Ridgeplots
 
 We're starting with the same plot as above, but instead of the points + boxplot, try a ridge plot instead using `ggridges::geom_density_ridges()`, and adjust the `bandwidth`.
 
+**Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
 gapminder %>% 
   filter(continent == "Americas") %>% 
@@ -215,6 +228,14 @@ gapminder %>%
   geom_boxplot()
 ```
 
+**Fixed Code**
+```{r, fig.width = 5, fig.height = 2}
+gapminder %>% 
+	filter(continent == "Americas") %>% 
+	ggplot(aes(lifeExp, country)) + 
+	ggridges::geom_density_ridges() 
+```
+  
 ### Exercise 6: Bar plot madness
 
 #### 6(a) Colour and stacking madness
@@ -226,11 +247,21 @@ gapminder %>%
 - Put the bars for transmission side-by-side with their own colour.
 - Capitalize the legend title.
 
+**Origional Code**
 ```{r, fig.width = 5, fig.height = 2}
 mtcars %>% 
   mutate(transmission = if_else(am == 0, "automatic", "manual")) %>% 
   ggplot(aes(cyl)) +
   geom_bar(aes(color = transmission))
+```
+
+**Fixed Code**
+```{r, fig.width = 5, fig.height = 2}
+mtcars %>% 
+  mutate(transmission = if_else(am == 0, "automatic", "manual")) %>% 
+  ggplot(aes(cyl, ..prop..)) +
+  geom_bar(aes(fill = transmission), position = "dodge") +
+  scale_x_continuous(breaks = c(4, 6, 8))
 ```
 
 #### 6(b) Bar heights already calculated
