@@ -32,6 +32,7 @@ knitr::opts_chunk$set(error = TRUE)
 ### Packages
 ```{r load packages, warning = FALSE, message = FALSE}
 library(tidyverse)
+library(gapminder)
 ```
     
 
@@ -145,8 +146,8 @@ Let's do some practice with grouping (and ungrouping) and summarizing data frame
 
 ```{r}
 gapminder %>% 
-  group_by(FILL_THIS_IN) %>% 
-  FILL_THIS_IN(min_life = min(lifeExp))
+  group_by(continent, year) %>% 
+  summarize(min_life = min(lifeExp))
 ```
 
 
