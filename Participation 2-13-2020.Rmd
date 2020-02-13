@@ -147,7 +147,8 @@ Let's do some practice with grouping (and ungrouping) and summarizing data frame
 ```{r}
 gapminder %>% 
   group_by(continent, year) %>% 
-  summarize(min_life = min(lifeExp))
+  summarize(min_life = min(lifeExp)) %>%
+  arrange(min_life)
 ```
 
 
