@@ -10,6 +10,7 @@ output:
 
 # Participation 2-13-2020
 
+
 ## Setting Up
 
 ### Error Allowance
@@ -33,6 +34,7 @@ knitr::opts_chunk$set(error = TRUE)
 ```{r load packages, warning = FALSE, message = FALSE}
 library(tidyverse)
 library(gapminder)
+# install.packages("tibble")
 ```
     
 
@@ -59,6 +61,7 @@ mtcars_2 <- mtcars %>%
 ```
 
 ### 2. 
+
 Print the results from Task 1 in an appealing way by using `knitr::kable()`.
 
 ```{r}
@@ -71,7 +74,9 @@ Let's use the `iris` dataset. Complete the following tasks. Chain together all o
 iris
 ```
 
-### 3. 
+
+### 3.
+
 Rename the variables to be all lowercase and to separate words with "_" instead of ".". Put the species name variable first. Store this result as a new object.
 
 ```{r}
@@ -85,7 +90,9 @@ iris_tidy <- iris %>%
   
 ```
 
+
 ### 4. 
+
 Using the data from Task 3, plot the sepal width for each species. Perhaps use a boxplot or a jitter plot (or both overlaid!). Be sure to format the axis labels nicely.
 
 ```{r}
@@ -94,7 +101,9 @@ iris_tidy %>%
     geom_jitter() 
 ```
 
+
 ### 5. 
+
 `iris` expresses all of the measurements in centimeters. Convert them to inches (1 in = 2.54 cm). Store this dataset as a new object.
 
 ```{r}
@@ -107,7 +116,9 @@ iris_tidy_inches <- iris_tidy %>%
   
 ```
 
+
 ### 6.
+
 Using the data from Task 5, plot the relationship between sepal width and sepal length. Indicate species using color and point shape.
 
 ```{r}
@@ -116,7 +127,9 @@ iris_tidy_inches %>%
     geom_point(aes(color = species, shape = species))
 ```
 
+
 ### 7.
+
 Using the data from Task 5, plot the relationship between sepal width and sepal length. This time, separate each species into a different subplot (facet).
 
 ```{r}
@@ -135,11 +148,14 @@ Let's head back to the guide at the section on `summarize()`.
 
 <br><br>
 
+
 ## Exercises for grouped data frames
 
 Let's do some practice with grouping (and ungrouping) and summarizing data frames!
 
+
 ### 1.
+
    (a) What's the minimum life expectancy for each continent and each year? 
    (b) Add the corresponding country to the tibble, too. 
    (c) Arrange by min life expectancy.
@@ -148,36 +164,47 @@ Let's do some practice with grouping (and ungrouping) and summarizing data frame
 gapminder %>% 
   group_by(continent, year) %>% 
   summarize(min_life = min(lifeExp)) %>%
-  arrange(min_life)
+  arrange(min_life) %>%
+  transmute(min_life_decade = round(min_life, -1))
 ```
 
 
 ### 2.
+
 Let's compute the mean Agreeableness score across items for each participant  in the `psych::bfi` dataset. Be sure to handle `NA`!
 
 ```{r}
+psych::bfi
+```
+
+```{r}
 psych::bfi %>%
-  as_tibble() %>% 
-  select(A1:A5) %>% 
-  rowwise() %>% 
-  mutate(A_mean = mean(c(A1, A2, A3, A4, A5), na.rm = TRUE)) %>% 
-  ungroup()
+  as_tibble() %>%
+  select(A1:A5) %>%
+  rowwise() %>%
+  mutate(A_Mean = mean(c(A1, A2, A3, A4, A5), na.rm = TRUE))
 ```
 
 Now compute mean scores for Conscientiousness, as well as `sd` and `min` scores for reach person.
 
 ```{r}
-
+psych::bfi %>%
+  as_tibble() %>%
+  select(C1:C5) %>%
+  rowwise() %>%
+  mutate(C_Mean = mean(c(C1, C2, C3, C4, C5), na.rm = TRUE), 
+         C_SD = sd(c(C1, C2, C3, C4, C5), na.rm = TRUE), 
+         C_Min = min(c(C1, C2, C3, C4, C5), na.rm = TRUE))
 ```
 
 Some functions are **vectorized**, so you don't need `rowwise()`. 
 For example, `pmin()` computes the "parallel min" across the vectors it receives:
 
 ```{r}
-psych::bfi %>% 
-  as_tibble() %>% 
-  select(A1:A5) %>% 
-  mutate(A_min = pmin(A1, A2, A3, A4, A5))
+psych::bfi %>%
+  as_tibble() %>%
+  select(C1:C5) %>%
+  pmin()
 ```
 
 **There are a few other ways to do this sort of computation.**
@@ -187,11 +214,7 @@ putting `select()` inside of `mutate()`:
 
 
 ```{r}
-psych::bfi %>% 
-  as_tibble() %>% 
-  select(A1:A5) %>% 
-  mutate(A_mn = rowMeans(select(., A1:A5)),
-         A_mn2 = rowMeans(select(., starts_with("A", ignore.case = FALSE))))
+
 ```
 
 **In the development version of `dplyr`, there are some functions to make**
@@ -202,27 +225,18 @@ remotes::install_github("tidyverse/dplyr")
 ```
 
 ```{r, eval = FALSE}
-psych::bfi %>% 
-  as_tibble() %>% 
-  select(A1:A5) %>% 
-  mutate(A_mn = rowMeans(across(A1:A5)),
-         A_mn2 = rowMeans(across(starts_with("A", ignore.case = FALSE))))
+
 ```
 
 ### 3.
 Let's use `psych::bfi` and make a new data frame that has (1) each participant's educational level (convert it to a categorical variable using `factor*()`) and the mean score for each of the Big Five scales for each participant. Store this data frame as a new object.
    
 ```{r}
-FILL_THIS_IN <-
-  psych::bfi %>% 
-  FILL_THIS_IN(FILL_THIS_IN)
 ```
 
 ###4. 
 Use the data from Task 3 to summarize the distributions of Big Five scores for each educational level (e.g., report the mean, sd, min, and max for each score in each group). Also report the sample size within each group.
    
 ```{r}
-FILL_THIS_IN %>% 
-  FILL_THIS_IN(FILL_THIS_IN) %>% 
-  FILL_THIS_IN(FILL_THIS_IN)
+
 ```  
