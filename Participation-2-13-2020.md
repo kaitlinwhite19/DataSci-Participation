@@ -6451,29 +6451,33 @@ Let's use `psych::bfi` and make a new data frame that has (1) each participant's
 psych_2 <- psych::bfi %>%
   as_tibble() %>%
   select(A1:A5, C1:C5, E1:E5, N1:N5, O1:O5, education) %>%
+  mutate(education = factor(education)) %>%
   rowwise() %>%
-  summarize(A_Mean = mean(c(A1, A2, A3, A4, A5), na.rm = TRUE), 
-            C_Mean = mean(c(C1, C2, C3, C4, C5), na.rm = TRUE), 
-            E_Mean = mean(c(E1, E2, E3, E4, E5), na.rm = TRUE),
-            N_Mean = mean(c(N1, N2, N3, N4, N5), na.rm = TRUE), 
-            O_Mean = mean(c(O1, O2, O3, O4, O5), na.rm = TRUE),
-            education) %>%
+  mutate(A_Mean = mean(c(A1, A2, A3, A4, A5), na.rm = TRUE), 
+         C_Mean = mean(c(C1, C2, C3, C4, C5), na.rm = TRUE), 
+         E_Mean = mean(c(E1, E2, E3, E4, E5), na.rm = TRUE),
+         N_Mean = mean(c(N1, N2, N3, N4, N5), na.rm = TRUE), 
+         O_Mean = mean(c(O1, O2, O3, O4, O5), na.rm = TRUE)) %>%
+  ungroup() %>%
   print()
 ```
 
 ```
-## # A tibble: 2,800 x 6
-##    A_Mean C_Mean E_Mean N_Mean O_Mean education
-##     <dbl>  <dbl>  <dbl>  <dbl>  <dbl>     <int>
-##  1    3.4    3.2   3.4     2.8    3.8        NA
-##  2    3.6    4     3       3.8    3.2        NA
-##  3    4.4    4     3.8     3.6    3.6        NA
-##  4    4.8    4.2   4       2.8    3.6        NA
-##  5    3.4    3.6   3.6     3.2    3.2        NA
-##  6    5.6    4.4   4       3      3.8         3
-##  7    4      3.6   4.2     1.4    3.8        NA
-##  8    2.8    3     3.2     4.2    3.4         2
-##  9    3.8    4.8   3.75    3.6    5           1
-## 10    4.8    4     3.6     4.2    3.6        NA
-## # ... with 2,790 more rows
+## # A tibble: 2,800 x 31
+##       A1    A2    A3    A4    A5    C1    C2    C3    C4    C5    E1    E2    E3
+##    <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int> <int>
+##  1     2     4     3     4     4     2     3     3     4     4     3     3     3
+##  2     2     4     5     2     5     5     4     4     3     4     1     1     6
+##  3     5     4     5     4     4     4     5     4     2     5     2     4     4
+##  4     4     4     6     5     5     4     4     3     5     5     5     3     4
+##  5     2     3     3     4     5     4     4     5     3     2     2     2     5
+##  6     6     6     5     6     5     6     6     6     1     3     2     1     6
+##  7     2     5     5     3     5     5     4     4     2     3     4     3     4
+##  8     4     3     1     5     1     3     2     4     2     4     3     6     4
+##  9     4     3     6     3     3     6     6     3     4     5     5     3    NA
+## 10     2     5     6     6     5     6     5     6     2     1     2     2     4
+## # ... with 2,790 more rows, and 18 more variables: E4 <int>, E5 <int>,
+## #   N1 <int>, N2 <int>, N3 <int>, N4 <int>, N5 <int>, O1 <int>, O2 <int>,
+## #   O3 <int>, O4 <int>, O5 <int>, education <fct>, A_Mean <dbl>, C_Mean <dbl>,
+## #   E_Mean <dbl>, N_Mean <dbl>, O_Mean <dbl>
 ```
