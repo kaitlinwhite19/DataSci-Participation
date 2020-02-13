@@ -74,9 +74,13 @@ iris
 Rename the variables to be all lowercase and to separate words with "_" instead of ".". Put the species name variable first. Store this result as a new object.
 
 ```{r}
-iris %>%
-  rename("sepal_length"="Sepal.Length", "sepal_width"="Sepal.Width", "petal_length"="Petal.Length", "petal_width"="Petal.Width", "species"="Species") 
-  
+iris_tidy <- iris %>%
+  select("species"="Species",
+         "sepal_length"="Sepal.Length", 
+         "sepal_width"="Sepal.Width",
+         "petal_length"="Petal.Length",
+         "petal_width"="Petal.Width") %>%
+  print()
   
 ```
 
@@ -84,13 +88,21 @@ iris %>%
 Using the data from Task 3, plot the sepal width for each species. Perhaps use a boxplot or a jitter plot (or both overlaid!). Be sure to format the axis labels nicely.
 
 ```{r}
+iris_tidy %>%
+  ggplot(aes(x = sepal_width, y = species)) +
+    geom_jitter() 
 ```
 
 ### 5. 
 `iris` expresses all of the measurements in centimeters. Convert them to inches (1 in = 2.54 cm). Store this dataset as a new object.
 
 ```{r}
-iris %>%
+iris_tidy_inches <- iris_tidy %>%
+  mutate(sepal_length = sepal_length/2.54,
+         sepal_width = sepal_width/2.54,
+         petal_length = petal_length/2.54,
+         petal_width = petal_width/2.54,) %>%
+  print()
   
 ```
 
@@ -98,12 +110,19 @@ iris %>%
 Using the data from Task 5, plot the relationship between sepal width and sepal length. Indicate species using color and point shape.
 
 ```{r}
+iris_tidy_inches %>%
+  ggplot(aes(x = sepal_width, y = sepal_length)) +
+    geom_point(aes(color = species, shape = species))
 ```
 
 ### 7.
 Using the data from Task 5, plot the relationship between sepal width and sepal length. This time, separate each species into a different subplot (facet).
 
 ```{r}
+iris_tidy_inches %>%
+  ggplot(aes(x = sepal_width, y = sepal_length)) +
+    geom_point(aes(color = species, shape = species)) +
+  facet_grid(rows = vars(species))
 ```
 
 
@@ -188,10 +207,8 @@ psych::bfi %>%
          A_mn2 = rowMeans(across(starts_with("A", ignore.case = FALSE))))
 ```
 
-3. Let's use `psych::bfi` and make a new data frame that has
-   (1) each participant's educational level (convert it to a categorical variable
-   using `factor*()`) and the mean score for each of the Big Five scales for each 
-   participant. Store this data frame as a new object.
+### 3.
+Let's use `psych::bfi` and make a new data frame that has (1) each participant's educational level (convert it to a categorical variable using `factor*()`) and the mean score for each of the Big Five scales for each participant. Store this data frame as a new object.
    
 ```{r}
 FILL_THIS_IN <-
@@ -199,74 +216,11 @@ FILL_THIS_IN <-
   FILL_THIS_IN(FILL_THIS_IN)
 ```
 
-4. Use the data from Task 3 to summarize the distributions of Big Five scores 
-   for each educational level (e.g., report the mean, sd, min, and max for
-   each score in each group). Also report the sample size within each group.
+###4. 
+Use the data from Task 3 to summarize the distributions of Big Five scores for each educational level (e.g., report the mean, sd, min, and max for each score in each group). Also report the sample size within each group.
    
 ```{r}
 FILL_THIS_IN %>% 
   FILL_THIS_IN(FILL_THIS_IN) %>% 
   FILL_THIS_IN(FILL_THIS_IN)
 ```  
-
-
-
-# Bonus Exercises
-
-1. In `gapminder`, take all countries in Europe that have a GDP per capita 
-   greater than 10000, and select all variables except `gdpPercap`. 
-   (Hint: use `-`).
-
-2. Take the first three columns of `gapminder` and extract the names.
-
-3. In `gapminder`, convert the population to a number in billions.
-
-4. Take the `iris` data frame and extract all columns that start with 
-   the word "Petal". 
-    - Hint: take a look at the "Select helpers" documentation by running the 
-      following code: `?tidyselect::select_helpers`.
-
-5. Filter the rows of `iris` for Sepal.Length >= 4.6 and Petal.Width >= 0.5.
-
-6. Calculate the growth in population since the first year on record 
-_for each country_ by rearranging the following lines, and filling in the 
-`FILL_THIS_IN`. Here's another convenience function for you: `dplyr::first()`. 
-
-```
-mutate(rel_growth = FILL_THIS_IN) %>% 
-arrange(FILL_THIS_IN) %>% 
-gapminder %>% 
-knitr::kable()
-group_by(country) %>% 
-```
-
-```{r}
-
-```
-
-
-7. Determine the country, on each continent, that experienced the 
-**sharpest 5-year drop in life expectancy**, sorted by the drop, by rearranging 
-the following lines of code. Ensure there are no `NA`'s. A helpful function to 
-compute changes in a variable across rows of data (e.g., for time-series data) 
-is `tsibble::difference()`:
-
-```
-drop_na() %>% 
-ungroup() %>% 
-arrange(year) %>% 
-filter(inc_life_exp == min(inc_life_exp)) %>% 
-gapminder %>% 
-mutate(inc_life_exp = FILL_THIS_IN) %>% # Compute the changes in life expectancy
-arrange(inc_life_exp) %>% 
-group_by(country) %>% 
-group_by(continent) %>% 
-knitr::kable()
-```
-
-```{r}
-
-```
-
-Exercises 4. and 5. are from 
-[r-exercises](https://www.r-exercises.com/2017/10/19/dplyr-basic-functions-exercises/).
