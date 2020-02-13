@@ -212,7 +212,6 @@ psych::bfi %>%
 `rowMeans()` computes the mean of each row of a data frame. We can use it by
 putting `select()` inside of `mutate()`:
 
-
 ```{r}
 
 ```
@@ -232,11 +231,15 @@ remotes::install_github("tidyverse/dplyr")
 Let's use `psych::bfi` and make a new data frame that has (1) each participant's educational level (convert it to a categorical variable using `factor*()`) and the mean score for each of the Big Five scales for each participant. Store this data frame as a new object.
    
 ```{r}
+psych_2 <- psych::bfi %>%
+  as_tibble() %>%
+  select(A1:A5, C1:C5, E1:E5, N1:N5, O1:O5, education) %>%
+  rowwise() %>%
+  summarize(A_Mean = mean(c(A1, A2, A3, A4, A5), na.rm = TRUE), 
+            C_Mean = mean(c(C1, C2, C3, C4, C5), na.rm = TRUE), 
+            E_Mean = mean(c(E1, E2, E3, E4, E5), na.rm = TRUE),
+            N_Mean = mean(c(N1, N2, N3, N4, N5), na.rm = TRUE), 
+            O_Mean = mean(c(O1, O2, O3, O4, O5), na.rm = TRUE),
+            education) %>%
+  print()
 ```
-
-###4. 
-Use the data from Task 3 to summarize the distributions of Big Five scores for each educational level (e.g., report the mean, sd, min, and max for each score in each group). Also report the sample size within each group.
-   
-```{r}
-
-```  
