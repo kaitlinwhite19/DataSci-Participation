@@ -12,12 +12,14 @@ output:
 
 ## Setting Up
 
-<!---The following chunk allows errors when knitting--->
+### Error Allowance
 
+<!---The following chunk allows errors when knitting--->
 ```{r allow errors, echo = FALSE}
 knitr::opts_chunk$set(error = TRUE)
 ```
 
+### Reminders
 **When you make an Rmd file for participation or homework, be sure to do this**:
 
 1. Change the file output to both html and md _documents_ (not notebook).
@@ -27,82 +29,98 @@ knitr::opts_chunk$set(error = TRUE)
 
 3. Stage and commit the Rmd and knitted documents.
 
-
-# Let's review some `dplyr` syntax
-
-Load the `tidyverse` package.
-    
+### Packages
 ```{r load packages, warning = FALSE, message = FALSE}
-# load your packages here:
-library(FILL_THIS_IN)
+library(tidyverse)
 ```
     
 
-## `select()`, `rename()`, `filter()`, `mutate()`, and a little plotting
+## Worksheet
+
+### 1.
+
+`select()`, `rename()`, `filter()`, `mutate()`, and a little plotting
 
 Let's use the `mtcars` dataset. Complete the following tasks. Chain together
-all of the commands in a task using the pipe `%>%`.
+all of the commands in a task using the pipe `%>%`. Show the miles per gallon and horsepower for cars with 6 cylinders. Also convert the data frame to a tibble (keep the rownames and store them in the tibble with a descriptive variable name). Store this result as a new object with a descriptive object name.
 
-1. Show the miles per gallon and horsepower for cars with 6 cylinders. Also
-   convert the data frame to a tibble (keep the rownames and store them in the
-   tibble with a descriptive variable name). Store this result as a new object
-   with a descriptive object name.
+```{r}
+mtcars
+```
+
+```{r}
+mtcars_2 <- mtcars %>%
+  as_tibble(rownames = "model") %>%
+  filter(cyl == 6) %>%
+  select(model, hp, mpg) %>% 
+  rename("Model"="model","Horsepower"="hp", "MPG"="mpg") %>%
+  print()
+```
+
+### 2. 
+Print the results from Task 1 in an appealing way by using `knitr::kable()`.
+
+```{r}
+knitr::kable(mtcars_2)
+```
+
+Let's use the `iris` dataset. Complete the following tasks. Chain together all of the commands in a task using the pipe `%>%`.
+
+```{r}
+iris
+```
+
+### 3. 
+Rename the variables to be all lowercase and to separate words with "_" instead of ".". Put the species name variable first. Store this result as a new object.
+
+```{r}
+iris %>%
+  rename("sepal_length"="Sepal.Length", "sepal_width"="Sepal.Width", "petal_length"="Petal.Length", "petal_width"="Petal.Width", "species"="Species") 
+  
+  
+```
+
+### 4. 
+Using the data from Task 3, plot the sepal width for each species. Perhaps use a boxplot or a jitter plot (or both overlaid!). Be sure to format the axis labels nicely.
 
 ```{r}
 ```
 
-2. Print the results from Task 1 in an appealing way by using `knitr::kable()`.
+### 5. 
+`iris` expresses all of the measurements in centimeters. Convert them to inches (1 in = 2.54 cm). Store this dataset as a new object.
+
+```{r}
+iris %>%
+  
+```
+
+### 6.
+Using the data from Task 5, plot the relationship between sepal width and sepal length. Indicate species using color and point shape.
 
 ```{r}
 ```
 
-Let's use the `iris` dataset. Complete the following tasks. Chain together
-all of the commands in a task using the pipe `%>%`.
-
-3. Rename the variables to be all lowercase and to separate words with "_"
-   instead of ".". Put the species name variable first. Store this result as 
-   a new object.
-
-```{r}
-```
-
-4. Using the data from Task 3, plot the sepal width for each species. Perhaps 
-   use a boxplot or a jitter plot (or both overlaid!). Be sure to format the
-   axis labels nicely.
-
-```{r}
-```
-
-5. `iris` expresses all of the measurements in centimeters. Convert them to 
-   inches (1 in = 2.54 cm). Store this dataset as a new object.
-
-```{r}
-```
-
-6. Using the data from Task 5, plot the relationship between sepal width and
-   sepal length. Indicate species using color and point shape.
-
-```{r}
-```
-
-7. Using the data from Task 5, plot the relationship between sepal width and
-   sepal length. This time, separate each species into a different subplot 
-   (facet).
+### 7.
+Using the data from Task 5, plot the relationship between sepal width and sepal length. This time, separate each species into a different subplot (facet).
 
 ```{r}
 ```
 
 
-# Back to Guide Again
+<br><br>
+
+## Back to Guide Again
 
 Let's head back to the guide at the section on `summarize()`.
 
+<br><br>
 
-# Exercises for grouped data frames
+## Exercises for grouped data frames
 
 Let's do some practice with grouping (and ungrouping) and summarizing data frames!
 
-1. (a) What's the minimum life expectancy for each continent and each year? 
+### 1.
+   (a) What's the minimum life expectancy for each continent and each year? 
    (b) Add the corresponding country to the tibble, too. 
    (c) Arrange by min life expectancy.
 
@@ -113,8 +131,8 @@ gapminder %>%
 ```
 
 
-2. Let's compute the mean Agreeableness score across items for each participant 
-in the `psych::bfi` dataset. Be sure to handle `NA`!
+### 2.
+Let's compute the mean Agreeableness score across items for each participant  in the `psych::bfi` dataset. Be sure to handle `NA`!
 
 ```{r}
 psych::bfi %>%
@@ -125,8 +143,7 @@ psych::bfi %>%
   ungroup()
 ```
 
-Now compute mean scores for Conscientiousness, as well as `sd` and `min` scores 
-for reach person.
+Now compute mean scores for Conscientiousness, as well as `sd` and `min` scores for reach person.
 
 ```{r}
 
