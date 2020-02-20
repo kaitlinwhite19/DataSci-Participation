@@ -53,11 +53,12 @@ lotr
 ### 3. Re-lengthen the wide LOTR data from Question 2 above.
 
 ```{r}
-lotr_wide-lengthened <-
+lotr_wide_lengthened <-
   lotr_wide %>% 
-  pivot_longer(cols = Elf, Hobbit, Man,
-               names_to  = Race,
-               values_to = )
+  pivot_longer(cols = c(Elf, Hobbit, Man),
+               names_to  = "Race",
+               values_to = "Words") %>% 
+print()
 ```
 
 ## Exercise 2: Multivariate Pivoting
