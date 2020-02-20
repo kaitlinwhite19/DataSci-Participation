@@ -1,0 +1,35 @@
+---
+title: "Participation 2/20/2020"
+author: "Kaitlin"
+date: "2/20/2020"
+output:
+  html_document:
+      keep_md: TRUE
+      theme: cerulean
+---
+
+## Setting Up
+
+### Error Allowance
+
+<!---The following chunk allows errors when knitting--->
+```{r allow errors, echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
+### Reminders
+**When you make an Rmd file for participation or homework, be sure to do this**:
+
+1. Change the file output to both html and md _documents_ (not notebook).
+  - See the `keep_md: TRUE` argument above.
+
+2. `knit` the document. 
+
+3. Stage and commit the Rmd and knitted documents.
+
+```{r}
+library(tidyverse)
+```
+
+### Workbook
+
