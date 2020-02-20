@@ -101,11 +101,33 @@ HairEyeColor %>%
 
 Now let’s consider the case when more than one variable are “out of place” – perhaps there are multiple variables per row, and/or multiple observations per row.
 
-an example:
-An observation of (length, width) of the sepal.
-An observation of (length, width) of the petal.
+## pivot_longer() MV
+
+To obtain the case where two (or more) variables are contained in column names, here’s how we specify the arguments of pivot_longer():
+
+cols: As usual.
+names_sep: What is separating the variables in the column names?
+names_to: The old columns are going to be put into new columns, after being separated. What should those columns be named?
+values_to: As usual.
 
 ```{r}
-iris2_longer
+iris2 %>% 
+  pivot_longer(cols      = c(-species, -id), 
+               names_to  = c("part", "dimension"),
+               names_sep = "_",
+               values_to = "measurement")
 ```
 
+
+## Pivot_wider() MV
+To obtain the case where multiple observations are contained in one row, here’s how to specify the arguments of pivot_longer():
+
+cols: As usual.
+names_sep: As above.
+names_to: As above, except this time, one part of the old column names are going to stay as columns (in this case, “length” and “width”). Indicate ".value" instead of a new column name.
+values_to: Not needed! You’ve already indicated that using the ".value" placeholder.
+
+iris2 %>% 
+  pivot_longer(cols      = c(-id, -species), 
+               names_to  = c("part", ".value"), 
+               names_sep = "_")
