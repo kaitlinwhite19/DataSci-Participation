@@ -7,7 +7,7 @@ output:
     keep_md: true
     theme: paper
 ---
-
+## Set up
 ```{r, warning = FALSE, message = FALSE}
 library(tidyverse)
 lotr  <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/data/lotr_tidy.csv")
@@ -30,9 +30,7 @@ Consider the Lord of the Rings data:
 lotr
 ```
 
-1. Would you say this data is in tidy format?
-
-   <!-- Describe why or why not in this space. -->
+### 1. Would you say this data is in tidy format?
    
    Yes, this data is tidy. The requirement to be "tidy" data are as follows
    -1 Each row is an observation. 
@@ -43,7 +41,7 @@ lotr
    2) Each column only contains one variable.
    3) Each cell holds a specific value that is relevant to the observation.
 
-2. Widen the data so that we see the words spoken by each race, by putting race as its own column.
+### 2. Widen the data so that we see the words spoken by each race, by putting race as its own column.
 
 ```{r}
 (lotr_wide <- lotr %>% 
@@ -52,15 +50,14 @@ lotr
               values_from = Words))
 ```
 
-3. Re-lengthen the wide LOTR data from Question 2 above.
+### 3. Re-lengthen the wide LOTR data from Question 2 above.
 
 ```{r}
-lotr_wide_fixed <- lotr_wide %>% 
+lotr_wide %>% 
   pivot_longer(FILL_THIS_IN = FILL_THIS_IN, 
                names_to  = FILL_THIS_IN, 
                values_to = FILL_THIS_IN)
 ```
-
 
 ## Exercise 2: Multivariate Pivoting
 
