@@ -2,12 +2,19 @@
 title: "Notes 2/20/2020"
 author: "Kaitlin"
 date: "2/20/2020"
-output: html_document
+output: 
+  html_document:
+    keed_md: true
+    theme: paper       
 ---
+
+## Set Up
 ```{r}
 library(tidyverse)
 ```
 ~~~~~~~
+
+# Tidy Data 
 
 Data is tidy if:
 1 Each row is an observation.
@@ -24,7 +31,7 @@ datasets::HairEyeColor
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-Pivoting
+# Pivoting
 
 ```{r}
 HairEyeColor_untidy <- HairEyeColor %>% 
@@ -37,9 +44,10 @@ To fix this, we need to convert the eye colour columns to two columns:
 one column to hold the eye colour (column names),
 one column to hold the values.
 
+~~~
 
-
-pivot_longer() takes a data frame, and returns a data frame. The arguments after the data argument that we’ll need are:
+## pivot_longer() 
+takes a data frame, and returns a data frame. The arguments after the data argument that we’ll need are:
 
 **cols** for the column names that we want to turn into a single column.
 **names_to:** the old column names are going to a new column. What should this new column be named? (optional, but highly recommended)
@@ -55,22 +63,24 @@ HairEyeColor_untidy %>%
 
 Better is to use helper functions from the tidyselect package. In this case, we know the columns contain the text “eyed”, so let’s use tidyselect::contains():
 
+```{r}
 haireye_untidy %>% 
   pivot_longer(cols      = contains("eyed"),
                names_to  = "eye",
                values_to = "n")
-
+```
 
 Yet another way is to indicate everything except the hair column:
 
+```{r}
 haireye_untidy %>% 
   pivot_longer(cols      = -hair,
                names_to  = "eye",
                values_to = "n")
-               
-~~~~~~~~~~~~~~~~~
+```               
+~~~
     
-7.3.2 pivot_wider()
+## pivot_wider()
 Like pivot_longer(), pivot_wider() takes a data frame and returns a data frame. The arguments after the data argument that we’ll need are:
 
 id_cols: The columns you would like to keep. If widening to make data tidy, then this is an identifier for an observation.
@@ -83,3 +93,19 @@ HairEyeColor %>%
               names_from = eye, 
               values_from = n)    
 ```
+
+
+~~~
+
+# Multivariate Pivoting - Pivoting Mutliple Variables
+
+Now let’s consider the case when more than one variable are “out of place” – perhaps there are multiple variables per row, and/or multiple observations per row.
+
+an example:
+An observation of (length, width) of the sepal.
+An observation of (length, width) of the petal.
+
+```{r}
+iris2_longer
+```
+
