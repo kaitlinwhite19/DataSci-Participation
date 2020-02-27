@@ -396,10 +396,20 @@ summary {
 </div>
 <div id="set-operations" class="section level4">
 <h4>Set Operations</h4>
-<p>each row is an element in a set</p>
+<p>These are occasionaly useful when youre looking to each row is an element in a set</p>
+<ul>
+<li><p>union(x, y) : all unique rows from X &amp; Y - removes duplicates</p></li>
+<li><p>union_all(x, y) : put all the rows together, keep dupicates</p></li>
+<li><p>intersect(x, y) : all values that are in both X &amp; Y - keep rows, remove any value that is only in either X or Y</p></li>
+<li><p>setdiff(x, y) : All rows that are in X but NOT Y, keeping rows</p></li>
+</ul>
 </div>
 <div id="binding" class="section level4">
 <h4>Binding</h4>
+<ul>
+<li><p>bind_rows(x, y) : throw all the rows into one tibble</p></li>
+<li><p>bind_cols(x, y) : throw all of the columns into one tibble</p></li>
+</ul>
 </div>
 </div>
 

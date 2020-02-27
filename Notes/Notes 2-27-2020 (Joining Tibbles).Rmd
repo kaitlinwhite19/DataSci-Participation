@@ -30,6 +30,19 @@ Kinda like mutating joins, but by row. Keeps all rows, sorts/filters column.
 Do activity sheet's "Exercise 1"
 
 #### Set Operations 
+These are occasionaly useful when youre looking to 
 each row is an element in a set
 
+- union(x, y) : all unique rows from X & Y - removes duplicates
+
+- union_all(x, y) : put all the rows together, keep dupicates
+
+- intersect(x, y) : all values that are in both X & Y - keep rows, remove any value that is only in either X or Y
+
+- setdiff(x, y) : All rows that are in X but NOT Y, keeping rows
+
 #### Binding  
+
+- bind_rows(x, y) : throw all the rows into one tibble
+ 
+- bind_cols(x, y) : throw all of the columns into one tibble
