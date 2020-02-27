@@ -102,6 +102,17 @@ time %>%
 ```
 
 
+BUT WAIT - this duplicated your "artist name" column. How do we avoid this?
+
+you couuuld change the "by" line to c("song", "artist_name")
+orrr
+drop one of the artist name columns before you merge.
+
+```{r}
+time %>% 
+  full_join(select(album, -"artist_name"), by = "song")
+```
+
 ## Exercise 2: LOTR
 
 Load in three tibbles of data on the Lord of the Rings:
