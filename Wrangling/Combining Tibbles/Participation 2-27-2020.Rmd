@@ -14,9 +14,9 @@ You will need data from Joey Bernhardt's `singer` R package for this exercise.
 
 You can download the singer data from the `USF-Psych-DataSci/Classroom` repo:
 
-```
-songs <- read_csv("https://github.com/USF-Psych-DataSci/Classroom/raw/master/data/singer/songs.csv")
-locations <- read_csv(https://github.com/USF-Psych-DataSci/Classroom/raw/master/data/singer/loc.csv")
+```{r}
+#songs <- read_csv("https://github.com/USF-Psych-DataSci/Classroom/raw/master/data/singer/songs.csv")
+#locations <- read_csv("https://github.com/USF-Psych-DataSci/Classroom/raw/master/data/singer/loc.csv")
 ```
 
 If you want, you could instead install the `singer` package itself. To do that,
@@ -60,34 +60,36 @@ Let's take a look at them (after minor modifications by renaming and shuffling):
 ```
 
 
-1. We really care about the songs in `time`. But, for which of those songs do we 
-   know its corresponding album?
+### 1.
+We really care about the songs in `time`. But, for which of those songs do we know its corresponding album?
 
 ```{r}
 time %>% 
-  FILL_THIS_IN(album, by = FILL_THIS_IN)
+  inner_join(album, by = "song")
 ```
 
-2. Go ahead and add the corresponding albums to the `time` tibble, being sure to 
-   preserve rows even if album info is not readily available.
+### 2.
+Go ahead and add the corresponding albums to the `time` tibble, being sure to preserve rows even if album info is not readily available.
 
 ```{r}
 time %>% 
-  FILL_THIS_IN(album, by = FILL_THIS_IN)
+  inner_join(album, by = "song")
 ```
 
-3. Which songs do we have "year", but not album info?
+### 3.
+Which songs do we have "year", but not album info?
 
 ```{r}
 time %>% 
-  FILL_THIS_IN(album, by = "song")
+ anti_join(album, by = "song")
 ```
 
-4. Which artists are in `time`, but not in `album`?
+###4. 
+Which artists are in `time`, but not in `album`?
 
 ```{r}
 time %>% 
-  anti_join(album, by = "FILL_THIS_IN")
+  anti_join(album, by = "artist_name")
 ```
 
 
@@ -95,8 +97,8 @@ time %>%
    available in one tibble. What would you do?
 
 ```{r}
-FILL_THIS_IN %>% 
-  FILL_THIS_IN(FILL_THIS_IN, by = "song")
+time %>% 
+  full_join(album, by = "song")
 ```
 
 

@@ -11,7 +11,7 @@ A couple of ways to do this
 #### Mutating Joins 
 works like "mutate()" - adds new columns to "origional" table by pulling from a "new" one. keeps all columns.
 
-- inner_join(x, y, by = "") : all rows from X where there are matching values in Y, and keep all columns from both X & Y. by = "use this to ID the items to group by"
+- inner_join(x, y, by = "") : all rows from X where there are matching values in Y, and keep all columns from both X & Y. by =  "use this to ID the items to group by".
 
 - left_join(x, y, by = "") : all variables from X & Y. Keep all columns. Keep all rows from X and add any matching info from Y. Rows in X with no match in Y will receive an "NA" value in new column.
 
@@ -22,7 +22,12 @@ works like "mutate()" - adds new columns to "origional" table by pulling from a 
 #### Filtering Joins
 Kinda like mutating joins, but by row. Keeps all rows, sorts/filters column. 
 
-- semi_join() : 
+- semi_join() : Keep all rows from X where there are matching values in Y, keeping just columns from X.
+
+- anti_join() : Keep all rows from X where there are not matching calues in Y, keeping columns from just X.
+
+#### Activity
+Do activity sheet's "Exercise 1"
 
 #### Set Operations 
 each row is an element in a set
