@@ -369,8 +369,7 @@ Let's use three set functions: `intersect`, `union` and `setdiff`. We'll work wi
 
 
 ```r
-y %>% 
-  intersect(z)
+intersect(y, z)
 ```
 
 ```
@@ -386,14 +385,22 @@ y %>%
 
 
 ```r
-FILL_THIS_IN(
+union(
   mutate(y, day = "Day 1"),
   mutate(z, day = "Day 2")
-)
+) 
 ```
 
 ```
-## Error in FILL_THIS_IN(mutate(y, day = "Day 1"), mutate(z, day = "Day 2")): could not find function "FILL_THIS_IN"
+## # A tibble: 6 x 3
+##   x1       x2 day  
+##   <chr> <int> <chr>
+## 1 A         1 Day 1
+## 2 B         2 Day 1
+## 3 C         3 Day 1
+## 4 B         2 Day 2
+## 5 C         3 Day 2
+## 6 D         4 Day 2
 ```
 
 3. The rows contained in `z` are bad! Remove those rows from `y`.
