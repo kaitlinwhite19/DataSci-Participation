@@ -189,9 +189,10 @@ nycflights13::flights %>%
 
 ```{r}
 nycflights13::flights %>% 
-  full_join(nycflights13::airlines, by = "carrier") %>% 
-  full_join(nycflights13::airports, by = "") %>% 
-  full_join(nycflights13::weather, by = c("year", "month", "day")) %>% 
-  full_join(nycflights13::planes, by = "")
+   left_join(nycflights13::weather, by = c("year", "month", "day", "time_hour")) %>% 
+  left_join(nycflights13::airlines, by = "carrier") %>% 
+  left_join(nycflights13::planes, by = "tailnum") %>% 
+  left_join(nycflights13::airports, by = "")
 ```
+
 

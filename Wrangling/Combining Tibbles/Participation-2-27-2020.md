@@ -418,3 +418,67 @@ setdiff(y, z)
 ```
 
 
+## Bonus Exercise (not in the OG template, we are freestylin)
+
+
+```r
+install.packages("nycflights13")
+```
+
+```
+## Installing package into 'C:/Users/Kaitlin/Documents/R/win-library/3.6'
+## (as 'lib' is unspecified)
+```
+
+```
+## Error in contrib.url(repos, "source"): trying to use CRAN without setting a mirror
+```
+
+```r
+library(nycflights13)
+```
+
+Combine all data sets
+
+
+```r
+nycflights13::flights %>% 
+  left_join(nycflights13::weather, by = c("year", "month", "day", "time_hour"))
+```
+
+```
+## # A tibble: 1,006,987 x 30
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    <int> <int> <int>    <int>          <int>     <dbl>    <int>          <int>
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      517            515         2      830            819
+##  3  2013     1     1      517            515         2      830            819
+##  4  2013     1     1      533            529         4      850            830
+##  5  2013     1     1      533            529         4      850            830
+##  6  2013     1     1      533            529         4      850            830
+##  7  2013     1     1      542            540         2      923            850
+##  8  2013     1     1      542            540         2      923            850
+##  9  2013     1     1      542            540         2      923            850
+## 10  2013     1     1      544            545        -1     1004           1022
+## # ... with 1,006,977 more rows, and 22 more variables: arr_delay <dbl>,
+## #   carrier <chr>, flight <int>, tailnum <chr>, origin.x <chr>, dest <chr>,
+## #   air_time <dbl>, distance <dbl>, hour.x <dbl>, minute <dbl>,
+## #   time_hour <dttm>, origin.y <chr>, hour.y <int>, temp <dbl>, dewp <dbl>,
+## #   humid <dbl>, wind_dir <dbl>, wind_speed <dbl>, wind_gust <dbl>,
+## #   precip <dbl>, pressure <dbl>, visib <dbl>
+```
+
+
+```r
+nycflights13::flights %>% 
+   left_join(nycflights13::weather, by = c("year", "month", "day", "time_hour")) %>% 
+  left_join(nycflights13::airlines, by = "carrier") %>% 
+  left_join(nycflights13::planes, by = "tailnum") %>% 
+  left_join(nycflights13::airports, by = "")
+```
+
+```
+## Error: `by` can't contain join column `` which is missing from LHS
+```
+
+

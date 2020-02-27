@@ -657,6 +657,42 @@ devtools::install_github(&quot;JoeyBernhardt/singer&quot;)</code></pre>
 ##   &lt;chr&gt; &lt;int&gt;
 ## 1 A         1</code></pre>
 </div>
+<div id="bonus-exercise-not-in-the-og-template-we-are-freestylin" class="section level2">
+<h2>Bonus Exercise (not in the OG template, we are freestylin)</h2>
+<pre class="r"><code>install.packages(&quot;nycflights13&quot;)</code></pre>
+<pre><code>## Installing package into &#39;C:/Users/Kaitlin/Documents/R/win-library/3.6&#39;
+## (as &#39;lib&#39; is unspecified)</code></pre>
+<pre><code>## Error in contrib.url(repos, &quot;source&quot;): trying to use CRAN without setting a mirror</code></pre>
+<pre class="r"><code>library(nycflights13)</code></pre>
+<p>Combine all data sets</p>
+<pre class="r"><code>nycflights13::flights %&gt;% 
+  left_join(nycflights13::weather, by = c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;, &quot;time_hour&quot;))</code></pre>
+<pre><code>## # A tibble: 1,006,987 x 30
+##     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+##  1  2013     1     1      517            515         2      830            819
+##  2  2013     1     1      517            515         2      830            819
+##  3  2013     1     1      517            515         2      830            819
+##  4  2013     1     1      533            529         4      850            830
+##  5  2013     1     1      533            529         4      850            830
+##  6  2013     1     1      533            529         4      850            830
+##  7  2013     1     1      542            540         2      923            850
+##  8  2013     1     1      542            540         2      923            850
+##  9  2013     1     1      542            540         2      923            850
+## 10  2013     1     1      544            545        -1     1004           1022
+## # ... with 1,006,977 more rows, and 22 more variables: arr_delay &lt;dbl&gt;,
+## #   carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;, origin.x &lt;chr&gt;, dest &lt;chr&gt;,
+## #   air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour.x &lt;dbl&gt;, minute &lt;dbl&gt;,
+## #   time_hour &lt;dttm&gt;, origin.y &lt;chr&gt;, hour.y &lt;int&gt;, temp &lt;dbl&gt;, dewp &lt;dbl&gt;,
+## #   humid &lt;dbl&gt;, wind_dir &lt;dbl&gt;, wind_speed &lt;dbl&gt;, wind_gust &lt;dbl&gt;,
+## #   precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;</code></pre>
+<pre class="r"><code>nycflights13::flights %&gt;% 
+   left_join(nycflights13::weather, by = c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;, &quot;time_hour&quot;)) %&gt;% 
+  left_join(nycflights13::airlines, by = &quot;carrier&quot;) %&gt;% 
+  left_join(nycflights13::planes, by = &quot;tailnum&quot;) %&gt;% 
+  left_join(nycflights13::airports, by = &quot;&quot;)</code></pre>
+<pre><code>## Error: `by` can&#39;t contain join column `` which is missing from LHS</code></pre>
+</div>
 
 
 
