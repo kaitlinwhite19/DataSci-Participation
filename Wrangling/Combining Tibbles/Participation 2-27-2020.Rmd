@@ -73,7 +73,7 @@ Go ahead and add the corresponding albums to the `time` tibble, being sure to pr
 
 ```{r}
 time %>% 
-  inner_join(album, by = "song")
+  left_join(album, by = "song")
 ```
 
 ### 3.
