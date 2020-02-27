@@ -1,0 +1,30 @@
+---
+title: "Notes 2-27-2020"
+author: "Kaitlin"
+date: "2/27/2020"
+output: html_document
+---
+## Joining Tibbles
+
+A couple of ways to do this
+ 
+#### Mutating Joins 
+works like "mutate()" - adds new columns to "origional" table by pulling from a "new" one. keeps all columns.
+
+- inner_join(x, y, by = "") : all rows from X where there are matching values in Y, and keep all columns from both X & Y. by = "use this to ID the items to group by"
+
+- left_join(x, y, by = "") : all variables from X & Y. Keep all columns. Keep all rows from X and add any matching info from Y. Rows in X with no match in Y will receive an "NA" value in new column.
+
+- right_join(x, y, by = "") : all variables from X & Y. Keep all columns. Keep all rows from Y and add any matching info from X. Rows in Y with no match in X will receive an "NA" value in new column.
+
+- full_join(x, y, by = "") : keep all rows and all columns from both X & Y. Where there are not matching values, returns NA for the one missing.
+
+#### Filtering Joins
+Kinda like mutating joins, but by row. Keeps all rows, sorts/filters column. 
+
+- semi_join() : 
+
+#### Set Operations 
+each row is an element in a set
+
+#### Binding  
