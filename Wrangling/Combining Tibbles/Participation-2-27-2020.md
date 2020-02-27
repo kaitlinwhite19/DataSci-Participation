@@ -128,26 +128,24 @@ Go ahead and add the corresponding albums to the `time` tibble, being sure to pr
 
 ```r
 time %>% 
-  inner_join(album, by = "song")
+  left_join(album, by = "song")
 ```
 
 ```
-## # A tibble: 13 x 6
-##    song               artist_name.x   year artist_name.y  city     album        
-##    <chr>              <chr>          <int> <chr>          <chr>    <chr>        
-##  1 "Grievance"        Pearl Jam       2000 Pearl Jam      Seattle~ Binaural     
-##  2 "Stupidmop"        Pearl Jam       1994 Pearl Jam      Seattle~ Vitalogy     
-##  3 "Present Tense"    Pearl Jam       1996 Pearl Jam      Seattle~ No Code      
-##  4 "MFC"              Pearl Jam       1998 Pearl Jam      Seattle~ Live On Two ~
-##  5 "Lukin"            Pearl Jam       1996 Pearl Jam      Seattle~ Seattle Wash~
-##  6 "It's Lulu"        The Boo Radle~  1995 The Boo Radle~ Liverpo~ Best Of      
-##  7 "Sparrow"          The Boo Radle~  1992 The Boo Radle~ Liverpo~ Everything's~
-##  8 "High as Monkeys"  The Boo Radle~  1998 The Boo Radle~ Liverpo~ Kingsize     
-##  9 "Butterfly McQuee~ The Boo Radle~  1993 The Boo Radle~ Liverpo~ Giant Steps  
-## 10 "My One and Only ~ Carly Simon     2005 Carly Simon    New Yor~ Moonlight Se~
-## 11 "It Was So Easy  ~ Carly Simon     1972 Carly Simon    New Yor~ No Secrets   
-## 12 "I've Got A Crush~ Carly Simon     1994 Carly Simon    New Yor~ Clouds In My~
-## 13 "Manha De Carnava~ Carly Simon     2007 Carly Simon    New Yor~ Into White
+## # A tibble: 22 x 6
+##    song            artist_name.x   year artist_name.y  city      album          
+##    <chr>           <chr>          <int> <chr>          <chr>     <chr>          
+##  1 Corduroy        Pearl Jam       1994 <NA>           <NA>      <NA>           
+##  2 Grievance       Pearl Jam       2000 Pearl Jam      Seattle,~ Binaural       
+##  3 Stupidmop       Pearl Jam       1994 Pearl Jam      Seattle,~ Vitalogy       
+##  4 Present Tense   Pearl Jam       1996 Pearl Jam      Seattle,~ No Code        
+##  5 MFC             Pearl Jam       1998 Pearl Jam      Seattle,~ Live On Two Le~
+##  6 Lukin           Pearl Jam       1996 Pearl Jam      Seattle,~ Seattle Washin~
+##  7 It's Lulu       The Boo Radle~  1995 The Boo Radle~ Liverpoo~ Best Of        
+##  8 Sparrow         The Boo Radle~  1992 The Boo Radle~ Liverpoo~ Everything's A~
+##  9 Martin_ Doom! ~ The Boo Radle~  1995 <NA>           <NA>      <NA>           
+## 10 Leaves And Sand The Boo Radle~  1993 <NA>           <NA>      <NA>           
+## # ... with 12 more rows
 ```
 
 ### 3.
@@ -222,6 +220,35 @@ time %>%
 ```
 
 
+BUT WAIT - this duplicated your "artist name" column. How do we avoid this?
+
+you couuuld change the "by" line to c("song", "artist_name")
+orrr
+drop one of the artist name columns before you merge.
+
+
+```r
+time %>% 
+  full_join(select(album, -"artist_name"), by = "song")
+```
+
+```
+## # A tibble: 23 x 5
+##    song                  artist_name     year city         album                
+##    <chr>                 <chr>          <int> <chr>        <chr>                
+##  1 Corduroy              Pearl Jam       1994 <NA>         <NA>                 
+##  2 Grievance             Pearl Jam       2000 Seattle, WA  Binaural             
+##  3 Stupidmop             Pearl Jam       1994 Seattle, WA  Vitalogy             
+##  4 Present Tense         Pearl Jam       1996 Seattle, WA  No Code              
+##  5 MFC                   Pearl Jam       1998 Seattle, WA  Live On Two Legs     
+##  6 Lukin                 Pearl Jam       1996 Seattle, WA  Seattle Washington N~
+##  7 It's Lulu             The Boo Radle~  1995 Liverpool, ~ Best Of              
+##  8 Sparrow               The Boo Radle~  1992 Liverpool, ~ Everything's Alright~
+##  9 Martin_ Doom! It's S~ The Boo Radle~  1995 <NA>         <NA>                 
+## 10 Leaves And Sand       The Boo Radle~  1993 <NA>         <NA>                 
+## # ... with 13 more rows
+```
+
 ## Exercise 2: LOTR
 
 Load in three tibbles of data on the Lord of the Rings:
@@ -273,32 +300,42 @@ retk <- read_csv("https://raw.githubusercontent.com/jennybc/lotr-tidy/master/dat
 
 
 ```r
-FILL_THIS_IN(fell, FILL_THIS_IN)
+bind_rows(fell, ttow, retk)
 ```
 
 ```
-## Error in FILL_THIS_IN(fell, FILL_THIS_IN): could not find function "FILL_THIS_IN"
+## # A tibble: 9 x 4
+##   Film                       Race   Female  Male
+##   <chr>                      <chr>   <dbl> <dbl>
+## 1 The Fellowship Of The Ring Elf      1229   971
+## 2 The Fellowship Of The Ring Hobbit     14  3644
+## 3 The Fellowship Of The Ring Man         0  1995
+## 4 The Two Towers             Elf       331   513
+## 5 The Two Towers             Hobbit      0  2463
+## 6 The Two Towers             Man       401  3589
+## 7 The Return Of The King     Elf       183   510
+## 8 The Return Of The King     Hobbit      2  2673
+## 9 The Return Of The King     Man       268  2459
 ```
 
-2. Which races are present in "The Fellowship of the Ring" (`fell`), but not in 
-   any of the other ones?
+2. Which races are present in "The Fellowship of the Ring" (`fell`), but not in any of the other ones?
 
 
 ```r
 fell %>% 
-  anti_join(ttow, by = "Race") %>% 
-  FILL_THIS_IN(FILL_THIS_IN, by = "Race")
+  anti_join(ttow, by = "Race") 
 ```
 
 ```
-## Error in FILL_THIS_IN(., FILL_THIS_IN, by = "Race"): could not find function "FILL_THIS_IN"
+## # A tibble: 0 x 4
+## # ... with 4 variables: Film <chr>, Race <chr>, Female <dbl>, Male <dbl>
 ```
 
+Huh... this code doesnt work very well. How else could we do it?
 
 ## Exercise 3: Set Operations
 
-Let's use three set functions: `intersect`, `union` and `setdiff`. We'll work 
-with two toy tibbles named `y` and `z`, similar to Data Wrangling Cheatsheet
+Let's use three set functions: `intersect`, `union` and `setdiff`. We'll work with two toy tibbles named `y` and `z`, similar to Data Wrangling Cheatsheet
 
 
 ```r
@@ -332,11 +369,16 @@ with two toy tibbles named `y` and `z`, similar to Data Wrangling Cheatsheet
 
 
 ```r
-FILL_THIS_IN(y, z)
+y %>% 
+  intersect(z)
 ```
 
 ```
-## Error in FILL_THIS_IN(y, z): could not find function "FILL_THIS_IN"
+## # A tibble: 2 x 2
+##   x1       x2
+##   <chr> <int>
+## 1 B         2
+## 2 C         3
 ```
 
 2. You collected the data in `y` on Day 1, and `z` in Day 2. 
@@ -358,9 +400,14 @@ FILL_THIS_IN(
 
 
 ```r
-FILL_THIS_IN(FILL_THIS_IN, FILL_THIS_IN)
+setdiff(y, z)
 ```
 
 ```
-## Error in FILL_THIS_IN(FILL_THIS_IN, FILL_THIS_IN): could not find function "FILL_THIS_IN"
+## # A tibble: 1 x 2
+##   x1       x2
+##   <chr> <int>
+## 1 A         1
 ```
+
+
