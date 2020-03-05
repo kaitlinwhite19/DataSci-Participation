@@ -1,0 +1,59 @@
+---
+title: "Notes 3/5/2020"
+author: "Kaitlin"
+date: "3/5/2020"
+output: html_document
+---
+
+Load required packages:
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(gapminder)
+```
+
+<!-- The following chunk allows errors when knitting -->
+
+```{r allow errors, echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Now... lets start by filter gapminder to only Asia and 2007
+
+```{r}
+gap_asia_2007 <- gapminder %>%
+   filter(year == 2007, continent == "Asia") %>% 
+   print()
+```
+
+
+We can write this to a comma-separated value (csv) file with just one command:
+```{r}
+write_csv(gap_asia_2007, "exported_file.csv")
+```
+
+BUT theres a problem - where does the file save?
+
+Couple ways to set this - 
+1)getwd() - this is how you can find out what R's current working directory is - wherever this location is is where your writeen-out files will save to.
+
+
+2)setwd() - DONT USE THIS ONE - only works with exact file & folder names, so likely wont work across devices
+
+## 5 important things to remeber when writing scripts
+1) Assume you're running in a fresh, clean R session AND make sure you actually are - include all of your library functions and make sure you're not using other files on your device because that won't work on someone elses device if they dont have the file or if its named differently.
+
+2) Assume you have all of the needed packages and don't need to install anything. If you include install functions you'll be changing the other person's computer and we dont want to do that without explicit permission. -- try commenting out those lines or type "eval=false" into the {r} thing. so{r install, eval = FALSE}
+
+3) 
+
+2
+
+Today is importing/exporting R files
+
+can write files out using 
+write_typeoffile(which file to write, "Name of new file")
+
