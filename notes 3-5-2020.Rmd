@@ -36,10 +36,11 @@ write_csv(gap_asia_2007, "exported_file.csv")
 ```
 
 BUT theres a problem - where does the file save?
+- should auto save to wherever you've opened R from
+- called a "directory" - synonymous with "folder" in files 
 
-Couple ways to set this - 
-1)getwd() - this is how you can find out what R's current working directory is - wherever this location is is where your writeen-out files will save to.
-
+2 to set this - 
+1)getwd() - this is how you can find out what R's current working directory is - wherever this location is is where your written-out files will save to.
 
 2)setwd() - DONT USE THIS ONE - only works with exact file & folder names, so likely wont work across devices
 
@@ -50,7 +51,7 @@ Couple ways to set this -
 
 3) Assume the script will run on its own - pre-import any data you're working with and load data/write output using R commands
 
-4)
+4) Make sure all of the needed files live in your project folder - make sure you use RELATIVE paths rather than ABSOLUTE paths
 
 5)
 
