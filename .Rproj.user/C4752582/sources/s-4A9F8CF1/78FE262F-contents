@@ -207,6 +207,7 @@ clevel_cleaned <-
 ```
 
 Now save that
+
 ```{r}
 write.csv(clevel_cleaned, here::here("data", "s008", "cleveldata_cleaned"))
 ```
@@ -235,8 +236,7 @@ clevel_plot <-
 
 Now... how to save the plot?
 
-ggsave()
-pdf()
+ggsave() is best
 
 ```{r}
 dir.create(here::here("output", "figures"))

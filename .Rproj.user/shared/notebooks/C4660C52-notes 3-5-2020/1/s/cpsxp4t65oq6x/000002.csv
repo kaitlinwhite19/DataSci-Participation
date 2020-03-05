@@ -1,10 +1,4 @@
-"0","#install.packages(""rtools"")"
 "0","#install.packages(""here"")"
-"0","install.packages(""ggplot"")"
-"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
-
-https://cran.rstudio.com/bin/windows/Rtools/
-"
 "0","library(here)"
 "0","library(tidyverse)"
 "0","library(readxl) "
