@@ -1,0 +1,10 @@
+"0","file_name <- basename(xls_url)"
+"0","download.file(xls_url, here::here(""data"", ""s008"", file_name), mode = ""wb"")"
+"2","trying URL 'http://gattonweb.uky.edu/sheather/book/docs/datasets/GreatestGivers.xls'
+"
+"2","Content type 'application/vnd.ms-excel'"
+"2"," length 24576 bytes (24 KB)
+"
+"2","downloaded 24 KB
+
+"

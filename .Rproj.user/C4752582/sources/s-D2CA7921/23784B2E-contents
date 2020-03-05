@@ -51,7 +51,7 @@ BUT theres a problem - where does the file save?
 
 2)setwd() - DONT USE THIS ONE - only works with exact file & folder names, so likely wont work across devices
 
-## 5 important things to remeber when writing scripts
+### 5 important things to remeber when writing scripts
 1) Assume you're running in a fresh, clean R session AND make sure you actually are - include all of your library functions and make sure you're not using other files on your device because that won't work on someone elses device if they dont have the file or if its named differently.
 
 2) Assume you have all of the needed packages and don't need to install anything. If you include install functions you'll be changing the other person's computer and we dont want to do that without explicit permission. -- try commenting out those lines or type "eval=false" into the {r} thing. so{r install, eval = FALSE}
@@ -62,7 +62,7 @@ BUT theres a problem - where does the file save?
 
 5) Assume your script will be run on multiple systems - Windows, MAC, Linux, etc. - windows uses backslash, MAC & Linux use forward slash -- wrtie the files using file.path() or here::here()
 
-## Rprojects
+### Rprojects
 Click File → New Project… and then make a new project in your participation repo folder. Give it a useful name like DataSci-participation.Rproj.
 
 When you double click on a .Rproj file, it: 1. Opens a new fresh R session, with 2. The working directory set to the location of the .Rproj file, and 3. No connection whatsoever to any other R sessions you already have open
@@ -81,7 +81,7 @@ Yay! Now lets fine tune it even more. Lets say we're working on the plotting par
 
 to avoid this use here::here()
 
-## here::here
+### here::here
 
 You can make your projects very portable by using .Rproj RStudio projects and relative paths with file.path(). This still can be a little fiddly:
 -Need to remember to open the .Rproj file, not a .Rmd or .R file
@@ -94,8 +94,81 @@ The major function is here::here(). Like file.path(), here::here() lets you spec
 For example, create a new folder “data” in your participation repo, and within it make a subfolder called “s008_data”. Then, save gap_asia_2007 using the here::here() and write_csv() functions:
 
 ```{r}
-write_csv(gap_asia_2007, here::here("data", "s008_data", "exported_file.csv"))
+write_csv(gap_asia_2007, here::here("data", "s008", "exported_file.csv"))
 ```
 
 
+## Reading in data
 
+### From the disk
+
+The same csv file that we just saved to disk can be imported into R again by specifying the path where it exists:
+
+```{r}
+read_csv(here::here("data", "s008", "exported_file.csv"))
+```
+
+Normally we would store the imported data into a new object that you can use in subsequent analyses using the assignment function <-.
+
+~~~
+
+Notice that the output of the imported file is the same as the original tibble, and read_csv() was intelligent enough to detect the types of the columns. This won’t always be true so it’s worth checking! The read_csv package has many additional options including the ability to specify column types (e.g., is “1990” a year or a number?), skip columns, skip rows, rename columns on import, trim whitespace, and more.
+
+One of the most important options to set is the na argument, which specifies what values to treat as NA on import. By default, read_csv() treats blank cells (i.e., "") and cells with "NA" as missing. You might need to change this (e.g., if missing values are entered as -999). Note that readxl::read_excel() by default only has na = c("") (no "NA")!
+
+~~~
+
+### Importing a file from the internet
+To import a CSV file from a web, assign the URL to a variable
+
+url <- "http://gattonweb.uky.edu/sheather/book/docs/datasets/magazines.csv"
+and then apply read_csv file to the url.
+
+#### CSV Files
+
+**read_csv(url)**
+
+will be parsed with column specification:
+ cols(
+   Magazine = col_character(),
+   AdRevenue = col_double(),
+   AdPages = col_double(),
+   SubRevenue = col_double(),
+   NewsRevenue = col_double()
+ )
+ 
+ 
+#### Excel Files
+First, we’ll need the package to load in Excel files:
+library(readxl) 
+
+Unlike with a CSV file, to import an .xls or .xlsx file from the internet, you first need to download it locally.
+
+Either create the folder path in Finder/Windows Explorer, or use the dir.create() function:
+- dir.create(here::here("data", "s008_data"), recursive = TRUE)
+  Next, you download the file. To download it, create a new object called
+  xls_url and then using download.file to dowload it to a specified
+  destination path.
+
+EXAMPLE: 
+
+```{r}
+xls_url <- "http://gattonweb.uky.edu/sheather/book/docs/datasets/GreatestGivers.xls"
+```
+
+```{r}
+download.file(xls_url, here::here("data", "s008", "some_file.xls"), mode = "wb")
+```
+NOTE: The mode = "wb" argument at the end is really important if you are on Windows. If you omit, you will probabbly get a message about downloading a corrupt file. More details about this behaviour can be found here.
+
+NAMING: Naming a file “some_file” is extremely bad practice (hard to keep track of the files), and you should always give it a more descriptive name. Often, it’s a good idea to name the file similarly (or the same as) the original file (sometimes that might not be a good idea if the original name is non-descriptive).
+
+There’s handy trick to extract the filename from the URL:
+```{r}
+file_name <- basename(xls_url)
+download.file(xls_url, here::here("data", "s008", file_name), mode = "wb")
+```
+Now we can import the file:
+```{r}
+read_excel(here::here("data", "s008", file_name))
+```

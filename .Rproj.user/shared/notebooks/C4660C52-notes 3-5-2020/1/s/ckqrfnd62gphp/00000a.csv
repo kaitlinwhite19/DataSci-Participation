@@ -1,4 +1,0 @@
-"0","write_csv(gap_asia_2007, here::here(""data"", ""s008_data"", ""exported_file.csv""))"
-"2","cannot open file 'C:/Users/Kaitlin/Documents/GitHub/DataSci-Participation/data/s008_data/exported_file.csv': No such file or directory"
-"2","Error in open.connection(path, ""wb"") : cannot open the connection
-"
