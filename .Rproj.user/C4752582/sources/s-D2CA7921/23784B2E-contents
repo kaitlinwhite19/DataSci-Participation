@@ -12,7 +12,7 @@ Load required packages:
 #install.packages("here")
 library(here)
 library(tidyverse)
-library(gapminder)
+library(readxl) 
 ```
 
 <!-- The following chunk allows errors when knitting -->
@@ -163,6 +163,14 @@ NOTE: The mode = "wb" argument at the end is really important if you are on Wind
 
 NAMING: Naming a file “some_file” is extremely bad practice (hard to keep track of the files), and you should always give it a more descriptive name. Often, it’s a good idea to name the file similarly (or the same as) the original file (sometimes that might not be a good idea if the original name is non-descriptive).
 
+
+RULES FOR NAMING A FILE
+1) Dont use spaces - will probably get replaced with %20 
+2) also try to avoid capitals
+4) DEFINETLY avoid dots
+3) break it up into chunks - for example "Depression & Dietary Habits in 2020"
+would be: depression-icecream-data_cleaned-data_2020.csv
+
 There’s handy trick to extract the filename from the URL:
 ```{r}
 file_name <- basename(xls_url)
@@ -172,3 +180,7 @@ Now we can import the file:
 ```{r}
 read_excel(here::here("data", "s008", file_name))
 ```
+
+
+#### Pulling in SPSS Files
+

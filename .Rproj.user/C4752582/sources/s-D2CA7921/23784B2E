@@ -2,18 +2,18 @@
     "collab_server" : "",
     "contents" : "",
     "created" : 1583420509801.000,
-    "dirty" : false,
+    "dirty" : true,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "2450001638",
+    "hash" : "0",
     "id" : "23784B2E",
-    "lastKnownWriteTime" : 1583423106,
-    "last_content_update" : 1583423106641,
+    "lastKnownWriteTime" : 1583423666,
+    "last_content_update" : 1583423671086,
     "path" : "~/GitHub/DataSci-Participation/notes 3-5-2020.Rmd",
     "project_path" : "notes 3-5-2020.Rmd",
     "properties" : {
-        "cursorPosition" : "172,10",
-        "scrollLine" : "164"
+        "cursorPosition" : "186,0",
+        "scrollLine" : "173"
     },
     "read_only" : false,
     "read_only_alternatives" : [
