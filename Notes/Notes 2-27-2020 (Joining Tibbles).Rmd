@@ -24,13 +24,13 @@ Kinda like mutating joins, but by row. Keeps all rows, sorts/filters column.
 
 - semi_join() : Keep all rows from X where there are matching values in Y, keeping just columns from X.
 
-- anti_join() : Keep all rows from X where there are not matching calues in Y, keeping columns from just X.
+- anti_join() : Keep all rows from X where there are not matching values in Y, keeping columns from just X.
 
 #### Activity
 Do activity sheet's "Exercise 1"
 
 #### Set Operations 
-These are occasionaly useful when youre looking to 
+These are occasionaly useful when youre looking to ??
 each row is an element in a set
 
 - union(x, y) : all unique rows from X & Y - removes duplicates
