@@ -5,13 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1020331309",
+    "hash" : "257891222",
     "id" : "23784B2E",
-    "lastKnownWriteTime" : 1583420433,
-    "last_content_update" : 1583420433,
+    "lastKnownWriteTime" : 1583421256,
+    "last_content_update" : 1583421262384,
     "path" : "~/GitHub/DataSci-Participation/notes 3-5-2020.Rmd",
     "project_path" : "notes 3-5-2020.Rmd",
     "properties" : {
+        "cursorPosition" : "96,30",
+        "scrollLine" : "93"
     },
     "read_only" : false,
     "read_only_alternatives" : [

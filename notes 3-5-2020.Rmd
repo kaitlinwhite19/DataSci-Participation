@@ -8,6 +8,9 @@ output: html_document
 Load required packages:
 
 ```{r, echo = FALSE, warning = FALSE, message = FALSE}
+#install.packages("rtools")
+#install.packages("here")
+library(here)
 library(tidyverse)
 library(gapminder)
 ```
@@ -21,6 +24,7 @@ knitr::opts_chunk$set(error = TRUE)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Today is importing/exporting R files
 
+## Writing Out
 can write files out using 
 write_typeoffile(which file to write, "Name of new file")
 
@@ -65,6 +69,33 @@ When you double click on a .Rproj file, it: 1. Opens a new fresh R session, with
 
 You can also set specfic options for each RStudio project (e.g., number of spaces to insert when you type Tab, etc.).
 
+When re-opening R.proj's, they'll remember what files you were working on last time you worked on the .proj and pull that up.
+
 Let’s practice closing RStudio and re-opening it by opening the RStudio project. Run getwd() to see where R is running.
+
+```{r}
+getwd()
+```
+
+Yay! Now lets fine tune it even more. Lets say we're working on the plotting participation file - the getwd may change to "C:/Users/Kaitlin/Documents/GitHub/DataSci-Participation/Plotting"
+
+to avoid this use here::here()
+
+## here::here
+
+You can make your projects very portable by using .Rproj RStudio projects and relative paths with file.path(). This still can be a little fiddly:
+-Need to remember to open the .Rproj file, not a .Rmd or .R file
+-If you open a .Rmd file contained in a subfolder, the working directory won’t be right for working with file.choose() for relative paths.
+
+Enter the here package. here takes the idea of relative paths and extends it in very useful ways!
+
+The major function is here::here(). Like file.path(), here::here() lets you specify a path to a file and then adds the system-appropriate separators (/ or \\). Where here::here() shines is that it figures out better where the relative paths should start from. It looks round in the folders in your directory and finds the .Rproj file, then constructs the relative file paths from there.
+
+For example, create a new folder “data” in your participation repo, and within it make a subfolder called “s008_data”. Then, save gap_asia_2007 using the here::here() and write_csv() functions:
+
+```{r}
+write_csv(gap_asia_2007, here::here("data", "s008_data", "exported_file.csv"))
+```
+
 
 
