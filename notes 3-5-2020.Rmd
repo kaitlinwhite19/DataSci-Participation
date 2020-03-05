@@ -48,7 +48,11 @@ Couple ways to set this -
 
 2) Assume you have all of the needed packages and don't need to install anything. If you include install functions you'll be changing the other person's computer and we dont want to do that without explicit permission. -- try commenting out those lines or type "eval=false" into the {r} thing. so{r install, eval = FALSE}
 
-3) 
+3) Assume the script will run on its own - pre-import any data you're working with and load data/write output using R commands
+
+4)
+
+5)
 
 2
 
