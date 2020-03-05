@@ -13,6 +13,7 @@ Load required packages:
 library(here)
 library(tidyverse)
 library(readxl) 
+library(haven)
 ```
 
 <!-- The following chunk allows errors when knitting -->
@@ -183,3 +184,13 @@ read_excel(here::here("data", "s008", file_name))
 
 
 #### Pulling in SPSS Files
+
+```{r}
+(clevel <- haven::read_spss(here::here("data", "s008", "clevel.sav")))
+```
+ 
+ 
+```{r}
+clevel
+```
+
