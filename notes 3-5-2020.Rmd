@@ -186,8 +186,7 @@ read_excel(here::here("data", "s008", file_name))
 #### Pulling in SPSS Files
 
 ```{r}
-clevel <-
-   haven::read_spss(here::here("data", "s008"))
+(clevel <- haven::read_spss(here::here("data", "s008", "clevel.sav")))
 ```
  
  
@@ -234,3 +233,7 @@ clevel_plot <-
   print()
 ```
 
+Now... how to save the plot?
+
+ggsave()
+pdf()

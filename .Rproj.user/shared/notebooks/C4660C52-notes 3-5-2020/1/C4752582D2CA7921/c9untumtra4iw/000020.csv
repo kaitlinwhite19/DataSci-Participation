@@ -1,5 +1,0 @@
-"0","clevel <-"
-"0","   haven::read_spss(here::here(""data"", ""s008"", ""clevel.sav""))"
-"2","Error in df_parse_sav_file(spec, encoding, user_na, cols_skip, n_max,  : 
-  Failed to parse C:/Users/Kaitlin/Documents/GitHub/DataSci-Participation/Data/s008/clevel.sav: Unable to open file.
-"
