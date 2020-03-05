@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1583420514189.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "505263612",
+    "id" : "3BD65B10",
+    "lastKnownWriteTime" : 1583418864,
+    "last_content_update" : 1583418864,
+    "path" : "~/GitHub/DataSci-Participation/participation 3-5-2020.Rmd",
+    "project_path" : "participation 3-5-2020.Rmd",
+    "properties" : {
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
