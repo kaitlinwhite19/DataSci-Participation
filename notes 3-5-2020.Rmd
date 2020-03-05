@@ -186,11 +186,29 @@ read_excel(here::here("data", "s008", file_name))
 #### Pulling in SPSS Files
 
 ```{r}
-(clevel <- haven::read_spss(here::here("data", "s008", "clevel.sav")))
+clevel <-
+   haven::read_spss(here::here("data", "s008", "clevel.sav"))
 ```
  
  
 ```{r}
 clevel
+```
+
+Clean the data - make language, gender, and clevel into factors and rename isclevel
+```{r}
+clevel_cleaned <-
+  clevel %>% 
+  mutate(language = as_factor(language),
+         gender = as_factor(gender),
+         isClevel = factor(isClevel, 
+                           levels = c(0, 1), 
+                           labels = c("No", "Yes"))) %>% 
+  print()
+```
+
+Now save that
+```{r}
+write.csv(clevel_cleaned, here::here("data", "s008", "cleveldata_cleaned"))
 ```
 
