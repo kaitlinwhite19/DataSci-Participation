@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1583428323219.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "260200518",
+    "id" : "F2ADB49E",
+    "lastKnownWriteTime" : 1583428398,
+    "last_content_update" : 1583428398232,
+    "path" : "~/GitHub/DataSci-Participation/Participation3-5-2020.Rmd",
+    "project_path" : "Participation3-5-2020.Rmd",
+    "properties" : {
+        "cursorPosition" : "130,0",
+        "scrollLine" : "128"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
