@@ -1,8 +1,0 @@
-"0","clevel_cleaned <-"
-"0","  clevel %>% "
-"0","  mutate(language = as_factor(language),"
-"0","         gender = as_factor(gender),"
-"0","         isClevel = factor(isClevel, "
-"0","                           levels = c(0, 1), "
-"0","                           labels = c(""No"", ""Yes""))) %>% "
-"0","  print()"

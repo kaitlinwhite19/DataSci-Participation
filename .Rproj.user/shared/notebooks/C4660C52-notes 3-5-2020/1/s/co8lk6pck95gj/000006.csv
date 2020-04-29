@@ -1,3 +1,0 @@
-"0","gap_asia_2007 <- gapminder %>%"
-"0","   filter(year == 2007, continent == ""Asia"") %>% "
-"0","   print()"
