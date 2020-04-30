@@ -2,7 +2,7 @@
 
 Welcome to the repository! This repo houses all of the assignments by Kaitlin White for Brenton Wiernik's Data Science & Visualization Class of Spring 2020.
 
-Navigation:
+__Navigation__:
 In this repo, there are 9 days worth of participation assignments. The dates and assignments are as follows:
 1) 1-16-2020 - Meeting 1 - Exploring R & navigating Github
 2) 1-23-2020 - Meeting 2 - Github and Rmd
@@ -14,7 +14,7 @@ In this repo, there are 9 days worth of participation assignments. The dates and
 8) 3-5-2020 - Meeting 8 - Data input and output
 9) 3-12-2020 - Meeting 9 - Factors & Visualization Sheets (2)
 
-The locations of each day's assigments are as follows:
+The _locations_ of each day's assigments are as follows:
 1) Meeting 1 - Exploring R Folder
 2) Meeting 2 - Github and Rmd - Tools Folder
 3) Meeting 3 - Plotting - Plotting Folder
