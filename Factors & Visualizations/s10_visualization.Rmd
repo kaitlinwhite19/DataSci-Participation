@@ -12,6 +12,9 @@ suppressPackageStartupMessages(library(tidyverse))
 library(gapminder)
 ```
 
+```{r allow errors, echo = FALSE}
+knitr::opts_chunk$set(error = TRUE)
+```
 
 # Saving Graphs to File
 

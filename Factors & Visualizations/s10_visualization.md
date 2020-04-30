@@ -27,7 +27,7 @@ ggplot(mtcars, aes(hp, wt)) +
     geom_point()
 ```
 
-![](s09_visualization_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+![](s10_visualization_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
 
 ```r
 ggsave(FILENAME_HERE, PLOT_OBJECT_HERE)
@@ -58,7 +58,7 @@ p_scales +
     scale_colour_continuous(trans="log10")
 ```
 
-![](s09_visualization_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
+![](s10_visualization_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 1. Change the y-axis tick mark spacing to 10; change the colour spacing to include all powers of 10.
 
@@ -127,7 +127,7 @@ p_scales +
 RColorBrewer::display.brewer.all()
 ```
 
-![](s09_visualization_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+![](s10_visualization_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 ```r
 p_scales +
@@ -184,7 +184,7 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length)) +
           title = "Sepal sizes of three plant species")
 ```
 
-![](s09_visualization_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
+![](s10_visualization_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 2. Then, change font size of axis labels, and the strip background colour. Others?
 
@@ -228,7 +228,7 @@ Consider the following plot:
      theme_bw())
 ```
 
-![](s09_visualization_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+![](s10_visualization_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 1. Convert it to a `plotly` object by applying the `ggplotly()` function:
 
