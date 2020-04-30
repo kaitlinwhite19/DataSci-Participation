@@ -493,13 +493,13 @@ suppressPackageStartupMessages(library(scales))</code></pre>
 </table>
 <div id="opening-mauna--" class="section level4">
 <h4>Opening Mauna -</h4>
-<pre class="r"><code>(mauna &lt;- tsibble::as_tsibble(co2) %&gt;% 
+<pre class="r"><code>(mauna &lt;- tsibble::as_tsibble(co2) %&gt;%    #this chunk opens the mauna kea data set and renames the variables
    rename(month = index, conc = value))</code></pre>
 <pre><code>## Error in loadNamespace(name): there is no package called &#39;tsibble&#39;</code></pre>
 </div>
 <div id="making-the-plot--" class="section level4">
 <h4>Making the plot -</h4>
-<pre class="r"><code>ggplot (mauna, aes(month, conc)) +
+<pre class="r"><code>ggplot (mauna, aes(month, conc)) +    #this chunk makes the plot
   geom_line() +
   theme_classic() </code></pre>
 <pre><code>## Error in ggplot(mauna, aes(month, conc)): object &#39;mauna&#39; not found</code></pre>
@@ -508,8 +508,9 @@ suppressPackageStartupMessages(library(scales))</code></pre>
 <div id="b--fix-the-code" class="section level3">
 <h3>2(b)- Fix The Code</h3>
 <p>Code Provided: {r, fig.with = 5, fig.height = 2} ggplot(mauna, aes(y = month)) + geom_line(aes(FILL_THIS_IN))</p>
+<p>The problem is that you’re only setting the y variable. The fixed code sets both.</p>
 <p>Fixed:</p>
-<pre class="r"><code>ggplot(mauna, aes(month, conc)) +
+<pre class="r"><code>ggplot(mauna, aes(month, conc)) +   
   geom_line()</code></pre>
 <pre><code>## Error in ggplot(mauna, aes(month, conc)): object &#39;mauna&#39; not found</code></pre>
 </div>
@@ -528,6 +529,7 @@ suppressPackageStartupMessages(library(scales))</code></pre>
 <h3>2(d)</h3>
 <p>What’s wrong with the following code? Fix it.</p>
 <p>Code Provided: {r, fig.width = 5, fig.height = 2} ggplot(gapminder) + geom_point(x = gdpPercap, y = lifeExp, alpha = 0.1)</p>
+<p>The problem with this code is that it sets the x and y variables in the individual plot. It’s better to set these in the aesthetic.</p>
 <p>Fixed:</p>
 <pre class="r"><code>ggplot(gapminder, aes(gdpPercap, lifeExp))+
   geom_point(alpha = 0.1)</code></pre>

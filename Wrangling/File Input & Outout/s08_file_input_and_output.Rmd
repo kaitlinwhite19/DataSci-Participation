@@ -30,15 +30,14 @@ can write files out using
 write_typeoffile(which file to write, "Name of new file")
 
 Now... lets start by filter gapminder to only Asia and 2007
-
 ```{r}
 gap_asia_2007 <- gapminder %>%
    filter(year == 2007, continent == "Asia") %>% 
-   print()
-```
+   print()                                          #This chunk filters the data to the countries in the continent Asia in the year 2007
+``` 
 
 
-We can write this to a comma-separated value (csv) file with just one command:
+We can write this to a comma-separated value (csv) file with just one command: This chunk write the file to a CSV
 ```{r}
 write_csv(gap_asia_2007, "exported_file.csv")
 ```
@@ -95,7 +94,7 @@ The major function is here::here(). Like file.path(), here::here() lets you spec
 For example, create a new folder “data” in your participation repo, and within it make a subfolder called “s008_data”. Then, save gap_asia_2007 using the here::here() and write_csv() functions:
 
 ```{r}
-write_csv(gap_asia_2007, here::here("data", "exported_file.csv"))
+write_csv(gap_asia_2007, here::here("data", "exported_file.csv"))      #This chunk saves gap_asia_2007 into the file data with the title "exported_file.csv"
 ```
 
 
@@ -105,8 +104,9 @@ write_csv(gap_asia_2007, here::here("data", "exported_file.csv"))
 
 The same csv file that we just saved to disk can be imported into R again by specifying the path where it exists:
 
+
 ```{r}
-read_csv(here::here("data", "exported_file.csv"))
+read_csv(here::here("data", "exported_file.csv"))      #This chunk reads the "exported_file.csv" back in 
 ```
 
 Normally we would store the imported data into a new object that you can use in subsequent analyses using the assignment function <-.
@@ -153,11 +153,11 @@ Either create the folder path in Finder/Windows Explorer, or use the dir.create(
 EXAMPLE: 
 
 ```{r}
-xls_url <- "http://gattonweb.uky.edu/sheather/book/docs/datasets/GreatestGivers.xls"
+xls_url <- "http://gattonweb.uky.edu/sheather/book/docs/datasets/GreatestGivers.xls"  #This pulls in a .xls file from the web
 ```
 
 ```{r}
-download.file(xls_url, here::here("data", "s008", "some_file.xls"), mode = "wb")
+download.file(xls_url, here::here("data", "s008", "some_file.xls"), mode = "wb")  #This downloads the .xls file we just pulled in
 ```
 NOTE: The mode = "wb" argument at the end is really important if you are on Windows. If you omit, you will probabbly get a message about downloading a corrupt file. More details about this behaviour can be found here.
 
@@ -174,7 +174,7 @@ would be: depression-icecream-data_cleaned-data_2020.csv
 There’s handy trick to extract the filename from the URL:
 ```{r}
 file_name <- basename(xls_url)
-download.file(xls_url, here::here("data", "s008", file_name), mode = "wb")
+download.file(xls_url, here::here("data", "s008", file_name), mode = "wb")         
 ```
 Now we can import the file:
 ```{r}
@@ -185,7 +185,7 @@ read_excel(here::here("data", "s008", file_name))
 #### Pulling in SPSS Files
 
 ```{r}
-(clevel <- haven::read_spss(here::here("data", "s008", "clevel.sav")))
+(clevel <- haven::read_spss(here::here("data", "s008", "clevel.sav")))    #This chunk reads in a .sav file from on the device
 ```
  
  
@@ -195,7 +195,7 @@ clevel
 
 Clean the data - make language, gender, and clevel into factors and rename isclevel
 ```{r}
-clevel_cleaned <-
+clevel_cleaned <- #this chunk cleans the data from the .sav file - changes language and gender to factors instead of coded numbers and categorizes isClevel on a </=/> scale
   clevel %>% 
   mutate(language = as_factor(language),
          gender = as_factor(gender),
@@ -208,14 +208,14 @@ clevel_cleaned <-
 Now save that
 
 ```{r}
-write.csv(clevel_cleaned, here::here("data", "s008", "cleveldata_cleaned"))
+write.csv(clevel_cleaned, here::here("data", "s008", "cleveldata_cleaned")) 
 ```
 
 
 Plot it!
 
 ```{r}
-clevel_plot <-
+clevel_plot <- #this creates an overlayed jitter and boxplot to show the Clevel as a function of gender
   clevel_cleaned %>% 
   mutate(isClevel = recode(isClevel, 
                            No = "Below C-level", 

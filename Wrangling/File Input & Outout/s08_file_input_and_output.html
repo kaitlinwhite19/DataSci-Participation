@@ -378,7 +378,7 @@ summary {
 <p>Now… lets start by filter gapminder to only Asia and 2007</p>
 <pre class="r"><code>gap_asia_2007 &lt;- gapminder %&gt;%
    filter(year == 2007, continent == &quot;Asia&quot;) %&gt;% 
-   print()</code></pre>
+   print()                                          #This chunk filters the data to the countries in the continent Asia in the year 2007</code></pre>
 <pre><code>## # A tibble: 33 x 6
 ##    country          continent  year lifeExp        pop gdpPercap
 ##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;      &lt;int&gt;     &lt;dbl&gt;
@@ -393,7 +393,7 @@ summary {
 ##  9 Iran             Asia       2007    71.0   69453570    11606.
 ## 10 Iraq             Asia       2007    59.5   27499638     4471.
 ## # ... with 23 more rows</code></pre>
-<p>We can write this to a comma-separated value (csv) file with just one command:</p>
+<p>We can write this to a comma-separated value (csv) file with just one command: This chunk write the file to a CSV</p>
 <pre class="r"><code>write_csv(gap_asia_2007, &quot;exported_file.csv&quot;)</code></pre>
 <p>BUT theres a problem - where does the file save? - should auto save to wherever you’ve opened R from - called a “directory” - synonymous with “folder” in files</p>
 <p>2 to set this - 1)getwd() - this is how you can find out what R’s current working directory is - wherever this location is is where your written-out files will save to.</p>
@@ -416,7 +416,7 @@ summary {
 <p>When re-opening R.proj’s, they’ll remember what files you were working on last time you worked on the .proj and pull that up.</p>
 <p>Let’s practice closing RStudio and re-opening it by opening the RStudio project. Run getwd() to see where R is running.</p>
 <pre class="r"><code>getwd()</code></pre>
-<pre><code>## [1] &quot;C:/Users/kaitl/OneDrive/Documents/USF/Data Science &amp; Vis/DataSci-Participation/File Input &amp; Outout&quot;</code></pre>
+<pre><code>## [1] &quot;C:/Users/kaitl/OneDrive/Documents/USF/Data Science &amp; Vis/DataSci-Participation/Wrangling/File Input &amp; Outout&quot;</code></pre>
 <p>Yay! Now lets fine tune it even more. Lets say we’re working on the plotting participation file - the getwd may change to “C:/Users/Kaitlin/Documents/GitHub/DataSci-Participation/Plotting”</p>
 <p>to avoid this use here::here()</p>
 </div>
@@ -426,9 +426,9 @@ summary {
 <p>Enter the here package. here takes the idea of relative paths and extends it in very useful ways!</p>
 <p>The major function is here::here(). Like file.path(), here::here() lets you specify a path to a file and then adds the system-appropriate separators (/ or \). Where here::here() shines is that it figures out better where the relative paths should start from. It looks round in the folders in your directory and finds the .Rproj file, then constructs the relative file paths from there.</p>
 <p>For example, create a new folder “data” in your participation repo, and within it make a subfolder called “s008_data”. Then, save gap_asia_2007 using the here::here() and write_csv() functions:</p>
-<pre class="r"><code>write_csv(gap_asia_2007, here::here(&quot;data&quot;, &quot;s008&quot;, &quot;exported_file.csv&quot;))</code></pre>
+<pre class="r"><code>write_csv(gap_asia_2007, here::here(&quot;data&quot;, &quot;exported_file.csv&quot;))      #This chunk saves gap_asia_2007 into the file data with the title &quot;exported_file.csv&quot;</code></pre>
 <pre><code>## Warning in open.connection(path, &quot;wb&quot;): cannot open file &#39;C:/Users/kaitl/
-## OneDrive/Documents/USF/Data Science &amp; Vis/DataSci-Participation/data/s008/
+## OneDrive/Documents/USF/Data Science &amp; Vis/DataSci-Participation/data/
 ## exported_file.csv&#39;: No such file or directory</code></pre>
 <pre><code>## Error in open.connection(path, &quot;wb&quot;): cannot open the connection</code></pre>
 </div>
@@ -438,8 +438,8 @@ summary {
 <div id="from-the-disk" class="section level3">
 <h3>From the disk</h3>
 <p>The same csv file that we just saved to disk can be imported into R again by specifying the path where it exists:</p>
-<pre class="r"><code>read_csv(here::here(&quot;data&quot;, &quot;s008&quot;, &quot;exported_file.csv&quot;))</code></pre>
-<pre><code>## Error: &#39;C:/Users/kaitl/OneDrive/Documents/USF/Data Science &amp; Vis/DataSci-Participation/data/s008/exported_file.csv&#39; does not exist.</code></pre>
+<pre class="r"><code>read_csv(here::here(&quot;data&quot;, &quot;exported_file.csv&quot;))      #This chunk reads the &quot;exported_file.csv&quot; back in </code></pre>
+<pre><code>## Error: &#39;C:/Users/kaitl/OneDrive/Documents/USF/Data Science &amp; Vis/DataSci-Participation/data/exported_file.csv&#39; does not exist.</code></pre>
 <p>Normally we would store the imported data into a new object that you can use in subsequent analyses using the assignment function &lt;-.</p>
 <pre><code>
 Notice that the output of the imported file is the same as the original tibble, and read_csv() was intelligent enough to detect the types of the columns. This won’t always be true so it’s worth checking! The read_csv package has many additional options including the ability to specify column types (e.g., is “1990” a year or a number?), skip columns, skip rows, rename columns on import, trim whitespace, and more.
@@ -461,15 +461,15 @@ One of the most important options to set is the na argument, which specifies wha
 <p>Unlike with a CSV file, to import an .xls or .xlsx file from the internet, you first need to download it locally.</p>
 <p>Either create the folder path in Finder/Windows Explorer, or use the dir.create() function: - dir.create(here::here(“data”, “s008_data”), recursive = TRUE) Next, you download the file. To download it, create a new object called xls_url and then using download.file to dowload it to a specified destination path.</p>
 <p>EXAMPLE:</p>
-<pre class="r"><code>xls_url &lt;- &quot;http://gattonweb.uky.edu/sheather/book/docs/datasets/GreatestGivers.xls&quot;</code></pre>
-<pre class="r"><code>download.file(xls_url, here::here(&quot;data&quot;, &quot;s008&quot;, &quot;some_file.xls&quot;), mode = &quot;wb&quot;)</code></pre>
+<pre class="r"><code>xls_url &lt;- &quot;http://gattonweb.uky.edu/sheather/book/docs/datasets/GreatestGivers.xls&quot;  #This pulls in a .xls file from the web</code></pre>
+<pre class="r"><code>download.file(xls_url, here::here(&quot;data&quot;, &quot;s008&quot;, &quot;some_file.xls&quot;), mode = &quot;wb&quot;)  #This downloads the .xls file we just pulled in</code></pre>
 <pre><code>## Error in download.file(xls_url, here::here(&quot;data&quot;, &quot;s008&quot;, &quot;some_file.xls&quot;), : cannot open destfile &#39;C:/Users/kaitl/OneDrive/Documents/USF/Data Science &amp; Vis/DataSci-Participation/data/s008/some_file.xls&#39;, reason &#39;No such file or directory&#39;</code></pre>
 <p>NOTE: The mode = “wb” argument at the end is really important if you are on Windows. If you omit, you will probabbly get a message about downloading a corrupt file. More details about this behaviour can be found here.</p>
 <p>NAMING: Naming a file “some_file” is extremely bad practice (hard to keep track of the files), and you should always give it a more descriptive name. Often, it’s a good idea to name the file similarly (or the same as) the original file (sometimes that might not be a good idea if the original name is non-descriptive).</p>
 <p>RULES FOR NAMING A FILE 1) Dont use spaces - will probably get replaced with %20 2) also try to avoid capitals 4) DEFINETLY avoid dots 3) break it up into chunks - for example “Depression &amp; Dietary Habits in 2020” would be: depression-icecream-data_cleaned-data_2020.csv</p>
 <p>There’s handy trick to extract the filename from the URL:</p>
 <pre class="r"><code>file_name &lt;- basename(xls_url)
-download.file(xls_url, here::here(&quot;data&quot;, &quot;s008&quot;, file_name), mode = &quot;wb&quot;)</code></pre>
+download.file(xls_url, here::here(&quot;data&quot;, &quot;s008&quot;, file_name), mode = &quot;wb&quot;)         </code></pre>
 <pre><code>## Error in download.file(xls_url, here::here(&quot;data&quot;, &quot;s008&quot;, file_name), : cannot open destfile &#39;C:/Users/kaitl/OneDrive/Documents/USF/Data Science &amp; Vis/DataSci-Participation/data/s008/GreatestGivers.xls&#39;, reason &#39;No such file or directory&#39;</code></pre>
 <p>Now we can import the file:</p>
 <pre class="r"><code>read_excel(here::here(&quot;data&quot;, &quot;s008&quot;, file_name))</code></pre>
@@ -477,12 +477,12 @@ download.file(xls_url, here::here(&quot;data&quot;, &quot;s008&quot;, file_name)
 </div>
 <div id="pulling-in-spss-files" class="section level4">
 <h4>Pulling in SPSS Files</h4>
-<pre class="r"><code>(clevel &lt;- haven::read_spss(here::here(&quot;data&quot;, &quot;s008&quot;, &quot;clevel.sav&quot;)))</code></pre>
+<pre class="r"><code>(clevel &lt;- haven::read_spss(here::here(&quot;data&quot;, &quot;s008&quot;, &quot;clevel.sav&quot;)))    #This chunk reads in a .sav file from on the device</code></pre>
 <pre><code>## Error: &#39;C:/Users/kaitl/OneDrive/Documents/USF/Data Science &amp; Vis/DataSci-Participation/data/s008/clevel.sav&#39; does not exist.</code></pre>
 <pre class="r"><code>clevel</code></pre>
 <pre><code>## Error in eval(expr, envir, enclos): object &#39;clevel&#39; not found</code></pre>
 <p>Clean the data - make language, gender, and clevel into factors and rename isclevel</p>
-<pre class="r"><code>clevel_cleaned &lt;-
+<pre class="r"><code>clevel_cleaned &lt;- #this chunk cleans the data from the .sav file - changes language and gender to factors instead of coded numbers and categorizes isClevel on a &lt;/=/&gt; scale
   clevel %&gt;% 
   mutate(language = as_factor(language),
          gender = as_factor(gender),
@@ -492,10 +492,10 @@ download.file(xls_url, here::here(&quot;data&quot;, &quot;s008&quot;, file_name)
   print()</code></pre>
 <pre><code>## Error in eval(lhs, parent, parent): object &#39;clevel&#39; not found</code></pre>
 <p>Now save that</p>
-<pre class="r"><code>write.csv(clevel_cleaned, here::here(&quot;data&quot;, &quot;s008&quot;, &quot;cleveldata_cleaned&quot;))</code></pre>
+<pre class="r"><code>write.csv(clevel_cleaned, here::here(&quot;data&quot;, &quot;s008&quot;, &quot;cleveldata_cleaned&quot;)) </code></pre>
 <pre><code>## Error in is.data.frame(x): object &#39;clevel_cleaned&#39; not found</code></pre>
 <p>Plot it!</p>
-<pre class="r"><code>clevel_plot &lt;-
+<pre class="r"><code>clevel_plot &lt;- #this creates an overlayed jitter and boxplot to show the Clevel as a function of gender
   clevel_cleaned %&gt;% 
   mutate(isClevel = recode(isClevel, 
                            No = &quot;Below C-level&quot;, 

@@ -198,7 +198,7 @@ Write a plot: Specifically, the plot should have the following grammar component
 
 
 ```r
-(mauna <- tsibble::as_tsibble(co2) %>% 
+(mauna <- tsibble::as_tsibble(co2) %>%    #this chunk opens the mauna kea data set and renames the variables
    rename(month = index, conc = value))
 ```
 
@@ -210,7 +210,7 @@ Write a plot: Specifically, the plot should have the following grammar component
 
 
 ```r
-ggplot (mauna, aes(month, conc)) +
+ggplot (mauna, aes(month, conc)) +    #this chunk makes the plot
   geom_line() +
   theme_classic() 
 ```
@@ -227,11 +227,12 @@ Code Provided:
 ggplot(mauna, aes(y = month)) +
   geom_line(aes(FILL_THIS_IN))
 
+The problem is that you're only setting the y variable. The fixed code sets both.
 
 Fixed:
 
 ```r
-ggplot(mauna, aes(month, conc)) +
+ggplot(mauna, aes(month, conc)) +   
   geom_line()
 ```
 
@@ -273,6 +274,8 @@ Code Provided:
 {r, fig.width = 5, fig.height = 2}
 ggplot(gapminder) +
   geom_point(x = gdpPercap, y = lifeExp, alpha = 0.1)
+
+The problem with this code is that it sets the x and y variables in the individual plot. It's better to set these in the aesthetic.
 
 Fixed:
 
