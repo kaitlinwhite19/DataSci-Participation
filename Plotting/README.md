@@ -1,5 +1,5 @@
 This Folder encompasses the work done on the class's 3rd meeting, on 1-30-2020. 
-The main focus of this lecture was learning to join tibbles.
+The main focus of this lecture was learning to use GGPlot.
 The file contents are as follows:
 1) s03b_ggplot_p2-exercise.rmd: the markdown script for the second assignment
 2) s03b_ggplot_p2-exercise.md: the second .rmd script's output .md file
