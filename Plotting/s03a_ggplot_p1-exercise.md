@@ -9,7 +9,8 @@ output:
 # Participation Activities Jan 30th 2020
 
 ## Installation and Set Up
-```{r}
+
+```r
 #install.packages("tidyverse")
 #install.packages("scales")
 #install.packages("tibble")
@@ -21,9 +22,7 @@ suppressPackageStartupMessages(library(scales))
 
 <!---The following chunk allows errors when knitting--->
 
-```{r allow errors, echo = FALSE}
-knitr::opts_chunk$set(error = TRUE, warning = FALSE)
-```
+
 
 
 
@@ -34,7 +33,8 @@ In this seciton Dr. Wiernik showed us an example and then walked us through how 
  
 Example
 
-```{r}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point(alpha = 0.1) +
   scale_x_log10("GDP per capita", labels = scales::dollar_format()) +
@@ -42,10 +42,13 @@ ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   ylab("Life Expectancy")
 ```
 
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-2-1.png)<!-- -->
+
 
 In class Practice - Naming Components
 
-```{r, fig.width=5, fig.height=2}
+
+```r
 gapminder %>% 
   filter(year==2007) %>% 
   mutate(continent=fct_infreq(continent)) %>% 
@@ -53,6 +56,8 @@ gapminder %>%
   geom_bar() +
   theme_bw()
 ```
+
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-3-1.png)<!-- -->
 
 With the output plot
 | Grammar Component     | Specification |
@@ -72,81 +77,104 @@ Class Walkthrough of a Making Scatter Plot- see notes
 Step 1 - The Basics
 this makes a plot
 
-```{r}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp))
 ```
+
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
 Step 2 - geom_point
 this adds the data
 
-```{r}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point()
 ```
+
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
 
 Step 3 - Alpha and Color
 this adds color and transparency
 
-```{r}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point(alpha =.1, aes(color = continent))
-
 ```
+
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
 
 Step 4 - Scale 
 this changes scale
 
-```{r}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point(alpha =.1, aes(color = continent)) +
   scale_x_log10()
 ```
+
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
 using log 10 transformation - not sure what that math is..? It's fine.
 
 Step 5 - Specifying Scale and Label
 specifications
 
-```{r}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point(alpha =.1, aes(color = continent)) +
   scale_x_log10("GDP per capita", labels=scales::dollar_format())
 ```
+
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
   
 
 Okay Cool! We're happy with this! Now... Lets make it prettier.
 
 Step 6 - Theme & Adding $ to GDP
 details
-```{r}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point(alpha =.1, aes(color=continent)) +
   scale_x_log10("GDP Per Capita", labels=scales::dollar_format()) +
   theme_grey()
 ```
 
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
+
 Step 7 - Naming Y Axis
 pretty self explanatory
 
-```{r}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point(alpha =.1, aes(color=continent)) +
   scale_x_log10("GDP Per Capita", labels=scales::dollar_format()) +
   theme_grey() +
   ylab("Life Expectancy")
 ```
+
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
 
 
 Step 8 - Figure Size
 size
-```{r, fig.width=7, fig.height=5}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp)) +
   geom_point(alpha =.1, aes(color=continent)) +
   scale_x_log10("GDP Per Capita", labels=scales::dollar_format()) +
   theme_grey() +
   ylab("Life Expectancy")
 ```
+
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
 ## Activity 2
 
@@ -168,17 +196,27 @@ Write a plot: Specifically, the plot should have the following grammar component
 
 #### Opening Mauna - 
 
-```{r}
+
+```r
 (mauna <- tsibble::as_tsibble(co2) %>% 
    rename(month = index, conc = value))
 ```
 
+```
+## Error in loadNamespace(name): there is no package called 'tsibble'
+```
+
 #### Making the plot - 
 
-```{r, fig.width= 7 , fig.height= 5}
+
+```r
 ggplot (mauna, aes(month, conc)) +
   geom_line() +
   theme_classic() 
+```
+
+```
+## Error in ggplot(mauna, aes(month, conc)): object 'mauna' not found
 ```
 
 
@@ -191,9 +229,14 @@ ggplot(mauna, aes(y = month)) +
 
 
 Fixed:
-```{r, fig.with = 5, fig.height = 2}
+
+```r
 ggplot(mauna, aes(month, conc)) +
   geom_line()
+```
+
+```
+## Error in ggplot(mauna, aes(month, conc)): object 'mauna' not found
 ```
 
 
@@ -202,12 +245,24 @@ ggplot(mauna, aes(month, conc)) +
 
 You can store the output of the plot in a variable, too. Store the plot from 2(a) in the variable named `p`, then add a layer to `p` that adds green points to the plot.
 
-```{r, fig.width = 5, fig.height = 2}
+
+```r
 p<-ggplot (mauna, aes(month, conc)) +
   geom_line() +
   theme_classic() 
+```
+
+```
+## Error in ggplot(mauna, aes(month, conc)): object 'mauna' not found
+```
+
+```r
 p +
   geom_point(color="green")
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'p' not found
 ```
 
 ### 2(d)
@@ -220,10 +275,13 @@ ggplot(gapminder) +
   geom_point(x = gdpPercap, y = lifeExp, alpha = 0.1)
 
 Fixed:
-```{r, fig.width = 5, fig.height = 2}
+
+```r
 ggplot(gapminder, aes(gdpPercap, lifeExp))+
   geom_point(alpha = 0.1)
 ```
+
+![](s03a_ggplot_p1-exercise_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
 
 ### 2(e) BONUS
@@ -235,8 +293,16 @@ So you're a ggplot2 pro? Then, let's see this plot adapted to polar coordinates.
 
 The plot should look like a spiral, or concentric circles. 
 
-```{r, fig.width = 5, fig.height = 2}
+
+```r
 ggplot (mauna, aes(month, conc)) +
   geom_????(angle=month.abb, radius=co2) +
   theme_classic() 
+```
+
+```
+## Error: <text>:2:28: unexpected ','
+## 1: ggplot (mauna, aes(month, conc)) +
+## 2:   geom_????(angle=month.abb,
+##                               ^
 ```
