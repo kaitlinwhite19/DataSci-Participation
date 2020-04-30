@@ -95,7 +95,7 @@ The major function is here::here(). Like file.path(), here::here() lets you spec
 For example, create a new folder “data” in your participation repo, and within it make a subfolder called “s008_data”. Then, save gap_asia_2007 using the here::here() and write_csv() functions:
 
 ```{r}
-write_csv(gap_asia_2007, here::here("data", "s008", "exported_file.csv"))
+write_csv(gap_asia_2007, here::here("data", "exported_file.csv"))
 ```
 
 
@@ -106,7 +106,7 @@ write_csv(gap_asia_2007, here::here("data", "s008", "exported_file.csv"))
 The same csv file that we just saved to disk can be imported into R again by specifying the path where it exists:
 
 ```{r}
-read_csv(here::here("data", "s008", "exported_file.csv"))
+read_csv(here::here("data", "exported_file.csv"))
 ```
 
 Normally we would store the imported data into a new object that you can use in subsequent analyses using the assignment function <-.
