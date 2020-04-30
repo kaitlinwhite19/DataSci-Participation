@@ -14,23 +14,23 @@ Welcome to the repository! This repo houses all of the assignments by Kaitlin Wh
 
 Navigation:
 In this repo, there are 9 days worth of participation assignments. The dates and assignments are as follows:
-1-16-2020 - Meeting 1 - Exploring R
-1-23-2020 - Meeting 2 - Github and Rmd
-1-30-2020 - Meeting 3 - Github Plotting Worksheets (2)
-2-6-2020 - Meeting 4 - Dplyr
-2-13-2020 - Meeting 5 - Dplyr
-2-20-2020 - Meeting 6 - Tidy Verse
-2-27-2020 - Meeting 7 - Tibble Joins
-3-5-2020 - Meeting 8 - Data input and output
-3-12-2020 - Meeting 9 - Factors & Visualization Sheets (2)
+1) 1-16-2020 - Meeting 1 - Exploring R
+2) 1-23-2020 - Meeting 2 - Github and Rmd
+3) 1-30-2020 - Meeting 3 - Github Plotting Worksheets (2)
+4) 2-6-2020 - Meeting 4 - Dplyr
+5) 2-13-2020 - Meeting 5 - Dplyr
+6) 2-20-2020 - Meeting 6 - Tidy Verse
+7) 2-27-2020 - Meeting 7 - Tibble Joins
+8) 3-5-2020 - Meeting 8 - Data input and output
+9) 3-12-2020 - Meeting 9 - Factors & Visualization Sheets (2)
 
 The locations of each day's assigments are as follows:
- Meeting 1 - Exploring R Folder
- Meeting 2 - Github and Rmd - Tools Folder
- Meeting 3 - Plotting - Plotting Folder
- Meeting 4 - Dplyr - Wrangling Folder
- Meeting 5 - Dplyr - Wrangling Folder
- Meeting 6 - Tidy Verse - Wrangling Folder
- Meeting 7 - Tibble Joins - Wrangling Folder
- Meeting 8 - Data input and output - Wrangling Folder
- Meeting 9 - Factors & Visualiztions - Wrangling Folder
+1) Meeting 1 - Exploring R Folder
+2) Meeting 2 - Github and Rmd - Tools Folder
+3) Meeting 3 - Plotting - Plotting Folder
+4) Meeting 4 - Dplyr - Wrangling Folder
+5) Meeting 5 - Dplyr - Wrangling Folder
+6) Meeting 6 - Tidy Verse - Wrangling Folder
+7) Meeting 7 - Tibble Joins - Wrangling Folder
+8) Meeting 8 - Data input and output - Wrangling Folder
+9) Meeting 9 - Factors & Visualiztions - Wrangling Folder
