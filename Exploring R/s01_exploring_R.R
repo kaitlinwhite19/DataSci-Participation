@@ -1,34 +1,34 @@
-2+2
+2+2 #trying basic math
 3+4
 
 
-number <-3
+number <-3  #setting the number
 
 number
-number*2
+number*2  #multiply
 
-number <-5
+number <-5 
 number*2
 
 another_number <-7
 
 number*another_number
 
-c(2,4,6,8)
+c(2,4,6,8) #lists
 
-times<- c(17,30,25,35,25,30,40,20)
+times<- c(17,30,25,35,25,30,40,20) #setting a list with a title
 mean(times)
 times/60
 
 
-sqrt(times)
-mean(times)
-range(times)
+sqrt(times) #square root
+mean(times) #mean
+range(times) #range
 
 times
-times>30
+times>30 #which times are under 30
 
-times==17
+times==17 #which times only equal 17
 times!=17
 
 which(times>30)
