@@ -7,6 +7,7 @@ output:
     keep_md: TRUE
 ---
 
+#Setup
 ```{r}
 suppressPackageStartupMessages(library(tidyverse))
 library(gapminder)
@@ -16,8 +17,9 @@ library(gapminder)
 knitr::opts_chunk$set(error = TRUE)
 ```
 
-# Saving Graphs to File
+#Assignment
 
+##Saving Graphs to File
 - Don't use the mouse
 - Use `ggsave` for ggplot
     - Practice by saving the following plot to file: 
@@ -34,7 +36,7 @@ ggsave(FILENAME_HERE, PLOT_OBJECT_HERE)
     - __Vector__: represented as shapes and lines. `pdf`, [`svg`](https://www.w3schools.com/graphics/svg_intro.asp).
     - For tips: ["10 tips for making your R graphics look their best""](http://blog.revolutionanalytics.com/2009/01/10-tips-for-making-your-r-graphics-look-their-best.html).
     
-# Scales; Color
+## Scales; Color
 
 Scale functions in `ggplot2` take the form `scale_[aesthetic]_[mapping]()`.
 
@@ -109,7 +111,7 @@ p_scales +
     scale_y_continuous(breaks=10*(1:10))
 ```
 
-# Theming
+## Theming
 
 Changing the look of a graphic can be achieved through the `theme()` layer.
 
@@ -141,7 +143,7 @@ ggplot(iris, aes(Sepal.Width, Sepal.Length)) +
 ```
 
 
-# Plotly (optional)
+## Plotly (optional)
 
 Consider the following plot:
 
